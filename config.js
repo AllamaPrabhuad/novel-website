@@ -13,9 +13,9 @@ const SHOW_PLACEHOLDERS = false;
    Put any deal here (e.g. "Buy 5 Get 5 free on Goat Milk wipes").
    Set text to "" to hide the bar. */
 const OFFER = {
-  text: "Now from Novel: Head to Toe Wash, Coconut Baby Oil, Tummy Roll-On & After Bite Turmeric Balm.",
-  hi:   "अब Novel से: हेड टू टो वॉश, कोकोनट बेबी ऑयल, टमी रोल-ऑन और आफ़्टर बाइट टर्मरिक बाम।",
-  cta: "Explore", ctaHi: "देखें",
+  text: "New from Novel: Baby Liquid Detergent & Baby Liquid Cleanser.",
+  hi:   "Novel में नया: बेबी लिक्विड डिटर्जेंट और बेबी लिक्विड क्लींज़र।",
+  cta: "See them", ctaHi: "देखें",
   href: "products.html#care"
 };
 
@@ -112,6 +112,11 @@ const PRODUCTS = {
            links:{ amazon:"https://www.amazon.in/dp/B0GTZSBDWD", flipkart:"https://www.flipkart.com/novel-baby-liquid-detergent-anti-bacterial-neem-coconut-removes-milk-food-stains-detergent/p/itmf1a2ed7d3961d" },
            desc:"Plant-enriched laundry detergent for baby clothes, with neem and coconut-based cleansers that help lift stains and odours.",
            hi:{ desc:"बच्चों के कपड़ों के लिए प्लांट-एनरिच्ड लॉन्ड्री डिटर्जेंट, नीम और नारियल-आधारित क्लींज़र के साथ, जो दाग और गंध हटाने में मदद करते हैं।" } },
+  cleanser:{ type:"care", kind:"pump", name:"Baby Liquid Cleanser", count:"1000 ml", tag:"Bottles & toys", c:"#9ED3E6", tint:"#E1F1FA",
+           img:"assets/products/baby-liquid-cleanser.webp", q:"Novel baby liquid cleanser",
+           links:{ amazon:"https://www.amazon.in/dp/B0GY8Q83LQ", flipkart:"https://www.flipkart.com/novel-baby-liquid-cleanser-1l-bottle-multi-fragrance-detergent/p/itmd6dbe33182138" },
+           desc:"Plant-enriched cleanser for feeding bottles, nipples, breast pump parts, toys, cutlery, fruits and vegetables. Lifts milk residue, grease and odour.",
+           hi:{ desc:"फ़ीडिंग बोतल, निपल, ब्रेस्ट पंप के पार्ट्स, खिलौने, बर्तन, फल और सब्ज़ियों के लिए प्लांट-एनरिच्ड क्लींज़र। दूध के अवशेष, चिकनाई और गंध हटाता है।" } },
 
   diapers:{ type:"essential", icon:"diaper", name:"Baby diapers", tint:"#ECF5D8", q:"Novel baby diapers",
            desc:"Soft, leak-guarded comfort", hi:{ name:"बेबी डायपर", desc:"मुलायम, लीक से सुरक्षा" } },
@@ -194,6 +199,10 @@ const FAQ = [
     a:"It's made for baby laundry: pH-balanced, with an IFRA-certified allergen-free fragrance, and made without phosphates, sulphates, parabens, phthalates and dyes. You can use it for hand wash or machine wash.",
     hq:"क्या बेबी लिक्विड डिटर्जेंट नवजात के कपड़ों के लिए सुरक्षित है?",
     ha:"यह बच्चों के कपड़ों के लिए बना है: pH-संतुलित, IFRA-प्रमाणित एलर्जन-फ़्री ख़ुशबू के साथ, और फ़ॉस्फ़ेट, सल्फ़ेट, पैराबेन, थैलेट और रंगों के बिना। इसे हाथ से या मशीन में धुलाई, दोनों के लिए इस्तेमाल कर सकते हैं।" },
+  { q:"How do I use the Baby Liquid Cleanser for bottles and toys?",
+    a:"Use it to wash feeding bottles, nipples, breast pump parts, toys and cutlery, or to wash fruits and vegetables. Use the amount shown on the pack, and always rinse thoroughly with clean water before use.",
+    hq:"बोतल और खिलौनों के लिए बेबी लिक्विड क्लींज़र कैसे इस्तेमाल करें?",
+    ha:"इससे फ़ीडिंग बोतल, निपल, ब्रेस्ट पंप के पार्ट्स, खिलौने और बर्तन धोएँ, या फल और सब्ज़ियाँ धोएँ। पैक पर बताई मात्रा इस्तेमाल करें और इस्तेमाल से पहले हमेशा साफ़ पानी से अच्छी तरह खंगालें।" },
   { q:"Where can I buy Novel products?",
     a:"On Amazon, Flipkart and Meesho, or in minutes on Blinkit and Swiggy Instamart. Use the shop buttons on this page.",
     hq:"Novel प्रोडक्ट्स कहाँ से ख़रीदें?",
@@ -257,6 +266,8 @@ const INGREDIENTS = {
   neem:      { name:"Neem",            hi:"नीम",            icon:"🌿", why:"A plant ingredient in the cleaning formula that helps remove stains and odours.", hiWhy:"सफ़ाई फ़ॉर्मूले का पौधा-आधारित हिस्सा, जो दाग और गंध हटाने में मदद करता है।" },
   coconutClean:{ name:"Coconut-based cleansers", hi:"नारियल-आधारित क्लींज़र", icon:"🥥", why:"Plant-derived cleansers that wash baby clothes clean and fresh.", hiWhy:"पौधों से बने क्लींज़र जो बच्चों के कपड़ों को साफ़ और ताज़ा धोते हैं।" },
   fragrance: { name:"Allergen-free fragrance", hi:"एलर्जन-फ़्री ख़ुशबू", icon:"🌸", why:"An IFRA-certified, allergen-free fragrance for a fresh smell after every wash.", hiWhy:"IFRA-प्रमाणित, एलर्जन-फ़्री ख़ुशबू, हर धुलाई के बाद ताज़गी के लिए।" },
+  plantClean:{ name:"Plant-derived cleansers", hi:"पौधों से बने क्लींज़र", icon:"🌱", why:"A biodegradable, plant-based formula that cuts through milk fat and food residue.", hiWhy:"बायोडिग्रेडेबल, पौधा-आधारित फ़ॉर्मूला जो दूध की चिकनाई और खाने के अवशेष हटाता है।" },
+  mildScent: { name:"Mild fragrance",  hi:"हल्की ख़ुशबू",     icon:"🌸", why:"A light scent that rinses away cleanly.", hiWhy:"हल्की ख़ुशबू जो धोने पर आसानी से निकल जाती है।" },
   olive:     { name:"Olive oil",       hi:"जैतून तेल",       icon:"🫒", why:"Adds gentle moisture to the soap.",                    hiWhy:"सोप में कोमल नमी जोड़ता है।" }
 };
 const INSIDE = {
@@ -267,7 +278,8 @@ const INSIDE = {
   oil:   { items:["coconut"] },
   roll:  { items:["hing","saunf"] },
   soap:  { items:["glycerine","almond","olive"] },
-  detergent: { items:["neem","coconutClean","fragrance"], free:["Phosphates","Sulphates","Parabens","Phthalates","Dyes"] }
+  detergent: { items:["neem","coconutClean","fragrance"], free:["Phosphates","Sulphates","Parabens","Phthalates","Dyes"] },
+  cleanser:  { items:["plantClean","mildScent"], free:["Parabens","Phosphates","Phthalates","Sulphates","Artificial colours"] }
 };
 
 /* ---------- Reviews ----------
@@ -327,6 +339,9 @@ const PRODUCT_INFO = {
   detergent:{ bestFor:"Newborn and baby clothes, bibs and burp cloths", hiBestFor:"नवजात और बच्चों के कपड़े, बिब और बर्प क्लॉथ",
            use:["Check the care label on your baby's clothes.","Use it for hand wash or machine wash, adding the amount shown on the pack.","Rinse well and dry as usual."],
            hiUse:["शिशु के कपड़ों पर लगा केयर लेबल देखें।","हाथ से या मशीन में धुलाई के लिए, पैक पर बताई मात्रा डालें।","अच्छी तरह खंगालें और हमेशा की तरह सुखाएँ।"] },
+  cleanser:{ bestFor:"Feeding bottles, nipples, breast pump parts, toys, cutlery, fruits and vegetables", hiBestFor:"फ़ीडिंग बोतल, निपल, ब्रेस्ट पंप के पार्ट्स, खिलौने, बर्तन, फल और सब्ज़ियाँ",
+           use:["Add the amount shown on the pack to water or a bottle brush.","Wash bottles, nipples, toys and cutlery, or wash fruits and vegetables.","Rinse thoroughly with clean water before use."],
+           hiUse:["पैक पर बताई मात्रा पानी या बोतल ब्रश पर डालें।","बोतल, निपल, खिलौने और बर्तन धोएँ, या फल और सब्ज़ियाँ धोएँ।","इस्तेमाल से पहले साफ़ पानी से अच्छी तरह खंगालें।"] },
   soap:  { bestFor:"A gentle, moisturising daily bath", hiBestFor:"रोज़ का कोमल, मॉइस्चराइज़िंग स्नान",
            use:["Lather the soap in wet hands.","Wash baby gently.","Rinse well and pat dry."],
            hiUse:["गीले हाथों में सोप का झाग बनाएँ।","शिशु को हल्के से नहलाएँ।","अच्छी तरह धोकर थपथपाकर सुखाएँ।"] }
@@ -338,7 +353,9 @@ const VIDEOS = [
   { id:"baby-soap",     title:"Bath time, made gentle",     hiTitle:"कोमल स्नान का समय", product:"soap" },
   { id:"baby-shampoo",  title:"Splashes and giggles",       hiTitle:"छपाक और खिलखिलाहट", product:"wash" },
   { id:"turmeric-balm", title:"Nature's healing touch",     hiTitle:"प्रकृति का कोमल स्पर्श", product:"balm" },
-  { id:"baby-detergent", title:"Soft on little clothes",     hiTitle:"नन्हे कपड़ों पर कोमल", product:"detergent" }
+  { id:"baby-detergent", title:"Soft on little clothes",     hiTitle:"नन्हे कपड़ों पर कोमल", product:"detergent" },
+  { id:"baby-bath",      title:"Splash o'clock",             hiTitle:"छपाक का समय", product:"wash" },
+  { id:"feeding-bottle", title:"Feeding time, made calm",    hiTitle:"दूध का सुकून भरा समय", product:"bottle" }
 ];
 
 /* ---------- Google Analytics ----------
@@ -349,5 +366,30 @@ const GA_ID = "G-DGTXRTYKWN";
 const PRODUCT_SLUGS = {
   aloe:"aloe-vera-baby-wipes", goat:"goat-milk-baby-wipes", water:"water-baby-wipes",
   wash:"head-to-toe-baby-wash", oil:"coconut-baby-oil", roll:"tummy-roll-on",
-  balm:"after-bite-turmeric-balm", soap:"babio-baby-soap", detergent:"baby-liquid-detergent"
+  balm:"after-bite-turmeric-balm", soap:"babio-baby-soap", detergent:"baby-liquid-detergent", cleanser:"baby-liquid-cleanser"
 };
+
+/* ---------- Home: showreel playlist (video ids from VIDEOS, in order) ---------- */
+const SHOWREEL = ["baby-soap","baby-oil","baby-bath","turmeric-balm","feeding-bottle","baby-detergent","baby-shampoo"];
+
+/* ---------- Home: "A day with Novel" (video: id from VIDEOS, otherwise the product photo is shown) ---------- */
+const DAY = [
+  { time:"7:00 am",  title:"Splash time",       hiTitle:"छपाक का समय",      video:"baby-bath",      product:"wash",
+    text:"Warm water, a gentle wash and a lot of giggles.", hiText:"गुनगुना पानी, कोमल वॉश और ढेर सारी खिलखिलाहट।" },
+  { time:"7:30 am",  title:"Massage & cuddles",  hiTitle:"मालिश और झप्पियाँ", video:"baby-oil",       product:"oil",
+    text:"A few drops of coconut oil and slow, loving strokes.", hiText:"नारियल तेल की कुछ बूँदें और प्यार भरी धीमी मालिश।" },
+  { time:"9:00 am",  title:"Nappy change",       hiTitle:"डायपर बदलना",       product:"water",
+    text:"Fragrance-free 99% water wipes for the most delicate skin.", hiText:"सबसे नाज़ुक त्वचा के लिए ख़ुशबू-रहित 99% पानी वाले वाइप्स।" },
+  { time:"12:30 pm", title:"Mealtime mess",      hiTitle:"खाने की गड़बड़",    product:"aloe",
+    text:"Dal on the cheeks? One soft wipe and it's gone.", hiText:"गालों पर दाल? एक मुलायम वाइप और सब साफ़।" },
+  { time:"3:00 pm",  title:"Bottles & toys",     hiTitle:"बोतल और खिलौने",    product:"cleanser",
+    text:"Wash bottles, nipples and toys, then rinse well.", hiText:"बोतल, निपल और खिलौने धोएँ, फिर अच्छी तरह खंगालें।" },
+  { time:"5:00 pm",  title:"Park time",          hiTitle:"पार्क का समय",      video:"turmeric-balm",  product:"balm",
+    text:"Home from the park with a bite? A little turmeric balm soothes it.", hiText:"पार्क से लौटे और कीड़े ने काट लिया? थोड़ा हल्दी बाम आराम देता है।" },
+  { time:"6:30 pm",  title:"Feeding time",       hiTitle:"दूध का समय",        video:"feeding-bottle", product:"bottle",
+    text:"Quiet, close and cosy.", hiText:"शांत, क़रीब और आरामदायक।" },
+  { time:"7:30 pm",  title:"Laundry load",       hiTitle:"कपड़े धोने का समय", video:"baby-detergent", product:"detergent",
+    text:"Little clothes, washed gently with neem and coconut cleansers.", hiText:"नन्हे कपड़े, नीम और नारियल क्लींज़र से कोमलता से धुले।" },
+  { time:"9:00 pm",  title:"Fussy evening",      hiTitle:"बेचैन शाम",         product:"roll",
+    text:"A tummy roll-on for gas, then off to sleep.", hiText:"गैस के लिए टमी रोल-ऑन, फिर सो जाइए।" }
+];

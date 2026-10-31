@@ -83,7 +83,11 @@ const HI = {
   "Hover a pack to open it. Every product is formulated for delicate baby skin in our own lab.":"पैक पर कर्सर ले जाएँ और उसे खुलते देखें। हर प्रोडक्ट हमारी अपनी लैब में शिशु की नाज़ुक त्वचा के लिए बनाया जाता है।",
   "Baby wipes":"बेबी वाइप्स", "Baby care":"बेबी केयर", "Baby essentials":"बेबी ज़रूरतें",
   "80 wipes":"80 वाइप्स", "72 wipes · with lid":"72 वाइप्स · ढक्कन के साथ",
-  "Bestseller":"बेस्टसेलर", "Baby laundry":"बेबी लॉन्ड्री", "Phosphates":"फ़ॉस्फ़ेट", "Sulphates":"सल्फ़ेट", "Phthalates":"थैलेट", "Dyes":"रंग (डाई)",
+  "Bestseller":"बेस्टसेलर", "Baby laundry":"बेबी लॉन्ड्री", "Bottles & toys":"बोतल और खिलौने", "Artificial colours":"कृत्रिम रंग",
+  "A plant-based cleanser for everything that goes near baby's mouth. Always rinse well with clean water.":"शिशु के मुँह के पास जाने वाली हर चीज़ के लिए पौधा-आधारित क्लींज़र। हमेशा साफ़ पानी से अच्छी तरह खंगालें।",
+  "Novel moments":"Novel के पल", "Made for little moments.":"छोटे-छोटे पलों के लिए।", "A day with Novel":"Novel के साथ एक दिन",
+  "From the first bath to the last cuddle.":"पहले स्नान से आख़िरी झप्पी तक।", "Scroll to move through the day":"दिन भर का सफ़र देखने के लिए स्क्रॉल करें",
+  "The whole range · tap any product":"पूरी रेंज · किसी भी प्रोडक्ट पर टैप करें", "Phosphates":"फ़ॉस्फ़ेट", "Sulphates":"सल्फ़ेट", "Phthalates":"थैलेट", "Dyes":"रंग (डाई)",
   "Plant-enriched and pH-balanced, made without phosphates, sulphates, parabens, phthalates and dyes, for baby clothes.":"प्लांट-एनरिच्ड और pH-संतुलित, फ़ॉस्फ़ेट, सल्फ़ेट, पैराबेन, थैलेट और रंगों के बिना, बच्चों के कपड़ों के लिए।", "Tear-free":"आँसू-रहित", "80 wipes · with lid":"80 वाइप्स · ढक्कन के साथ", "India's first":"भारत में पहला", "For newborns":"नवजात के लिए", "Shop on Amazon →":"Amazon पर ख़रीदें →",
   // finder
   "Not sure which one? Find out in three taps.":"कौन-सा चुनें? तीन टैप में जानें।",
@@ -181,7 +185,8 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const PAGE = document.body.dataset.page || "index";
 // product links work from any page
 const prodHref = id => (PAGE === "products" ? "#prod-" : "products.html#prod-") + id;
-const detailHref = id => PRODUCT_SLUGS[id] ? PRODUCT_SLUGS[id] + ".html" : (PAGE === "products" ? "#detail-" : "products.html#detail-") + id;
+const detailHref = id => PRODUCT_SLUGS[id] ? PRODUCT_SLUGS[id] + ".html"
+  : PRODUCT_INFO[id] ? (PAGE === "products" ? "#detail-" : "products.html#detail-") + id : prodHref(id);
 
 /* ---------- link tracking ---------- */
 function track(url, place){
@@ -382,7 +387,8 @@ const WHY = {
   wash:"One mild wash for hair and body keeps bath time short and simple.",
   oil:"A light oil for a calm, bonding massage.",
   roll:"Rolls on in seconds when your little one is restless.",
-  detergent:"Plant-enriched and pH-balanced, made without phosphates, sulphates, parabens, phthalates and dyes, for baby clothes."
+  detergent:"Plant-enriched and pH-balanced, made without phosphates, sulphates, parabens, phthalates and dyes, for baby clothes.",
+  cleanser:"A plant-based cleanser for everything that goes near baby's mouth. Always rinse well with clean water."
 };
 function recommend(age, need, skin){
   const wipe = (age === "newborn" || skin === "sensitive") ? "water" : skin === "dry" ? "goat" : "aloe";
@@ -392,7 +398,8 @@ function recommend(age, need, skin){
     bath:   ["wash", ["soap", wipe]],
     massage:["oil", ["roll", "soap"]],
     tummy:  ["roll", ["oil", "wash"]],
-    laundry:["detergent", [wipe, "soap"]]
+    laundry:["detergent", [wipe, "soap"]],
+    bottles:["cleanser", ["detergent", wipe]]
   }[need];
   return { main: plan[0], also: plan[1] };
 }
@@ -770,6 +777,162 @@ function renderRelated(){
   $("relatedList").innerHTML = rel.map(id => `<a href="${detailHref(id)}"><span class="thumb" style="background:${PRODUCTS[id].tint}">${art(id)}</span>${pName(id)}</a>`).join("");
 }
 
+
+/* =====================================================================
+   HOME EXTRAS: showreel, moving product strip, "A day with Novel"
+   ===================================================================== */
+const fine = matchMedia("(pointer: fine)").matches;
+const videoById = id => VIDEOS.find(v => v.id === id);
+
+/* showreel: one video at a time, playing the whole list in order */
+let srIndex = 0, srStarted = false;
+function srCaption(){
+  const v = videoById(SHOWREEL[srIndex]);
+  $("srCaption").innerHTML = v ? `${pick(v.title, v.hiTitle)} · <a href="${detailHref(v.product)}">${pName(v.product)} →</a>` : "";
+  $("srDots").querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-selected", i === srIndex));
+}
+function renderShowreel(){
+  if (!$("srFrame")) return;
+  $("srDots").innerHTML = SHOWREEL.map((id, i) => `<button type="button" role="tab" aria-selected="${i === srIndex}" data-i="${i}" aria-label="${pick(videoById(id).title, videoById(id).hiTitle)}"><i></i></button>`).join("");
+  srCaption();
+}
+function srPlay(i){
+  srIndex = (i + SHOWREEL.length) % SHOWREEL.length;
+  const vid = $("srVideo"), id = SHOWREEL[srIndex];
+  vid.poster = `assets/videos/${id}-poster.webp`;
+  vid.src = `assets/videos/${id}.mp4`;
+  if (!reduce) vid.play().catch(() => {});
+  srCaption();
+}
+if ($("srFrame")){
+  const vid = $("srVideo");
+  if (reduce) vid.controls = true;
+  vid.addEventListener("ended", () => srPlay(srIndex + 1));
+  $("srDots").addEventListener("click", e => { const b = e.target.closest("[data-i]"); if (b) srPlay(+b.dataset.i); });
+  const start = () => { if (!srStarted){ srStarted = true; srPlay(0); } };
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting){ if (srStarted) vid.pause(); return; }
+      if (!srStarted) start(); else if (!reduce) vid.play().catch(() => {});
+    }), { rootMargin:"150px" }).observe($("showreel"));
+  } else start();
+}
+
+/* moving strip with every product */
+function renderRange(){
+  if (!$("rmTrack")) return;
+  const items = Object.keys(PRODUCTS).filter(id => PRODUCTS[id].img).map(id =>
+    `<a class="rm-item" href="${detailHref(id)}" style="--tint:${PRODUCTS[id].tint}"><span class="rm-img">${art(id)}</span><b>${pName(id)}</b></a>`).join("");
+  $("rmTrack").innerHTML = items + items.replace(/<a class="rm-item"/g, '<a class="rm-item" aria-hidden="true" tabindex="-1"');
+}
+
+/* "A day with Novel": pinned horizontal scroll on large screens, swipe on phones */
+const dayPinned = () => innerWidth > 760 && !reduce;
+function sizeDay(){
+  const day = $("day"); if (!day) return;
+  const track = $("dayTrack");
+  if (dayPinned()){
+    day.classList.add("pinned");
+    day.style.height = (innerHeight + Math.max(0, track.scrollWidth - innerWidth) + 120) + "px";
+  } else {
+    day.classList.remove("pinned"); day.style.height = ""; track.style.transform = "";
+  }
+}
+function renderDay(){
+  if (!$("dayTrack")) return;
+  $("dayTrack").innerHTML = DAY.map((d, i) => {
+    const p = PRODUCTS[d.product];
+    const media = d.video ? videoTag(d.video)
+      : p.img ? `<img class="${p.photo === "cover" ? "cover" : "cut"}" src="${p.img}" alt="Novel ${p.name}" loading="lazy">` : "";
+    return `<article class="day-card" style="--tint:${p.tint || "#ECF5D8"}">
+      <div class="dc-media">${media}<span class="dc-time">${d.time}</span></div>
+      <div class="dc-body"><span class="dc-step">${String(i + 1).padStart(2, "0")} / ${String(DAY.length).padStart(2, "0")}</span>
+        <h3>${pick(d.title, d.hiTitle)}</h3><p>${pick(d.text, d.hiText)}</p>
+        <a class="dc-link" href="${detailHref(d.product)}">${pName(d.product)} →</a></div>
+    </article>`; }).join("");
+  sizeDay();
+}
+
+/* =====================================================================
+   EFFECTS ON EVERY PAGE
+   ===================================================================== */
+/* scroll progress bar + scroll-linked sections */
+const progressBar = document.createElement("div");
+progressBar.className = "scroll-progress"; progressBar.setAttribute("aria-hidden", "true");
+document.body.appendChild(progressBar);
+function sectionProgress(el){
+  const total = el.offsetHeight - innerHeight;
+  return total > 0 ? Math.min(1, Math.max(0, -el.getBoundingClientRect().top / total)) : 0;
+}
+let fxTicking = false;
+function onScrollFx(){
+  fxTicking = false;
+  const h = document.documentElement.scrollHeight - innerHeight;
+  progressBar.style.transform = `scaleX(${h > 0 ? (scrollY / h).toFixed(4) : 0})`;
+  const sr = $("showreel");
+  if (sr && !reduce) sr.style.setProperty("--p", Math.min(1, sectionProgress(sr) * 1.7).toFixed(3));
+  const day = $("day");
+  if (day && day.classList.contains("pinned")){
+    const pr = sectionProgress(day), track = $("dayTrack");
+    track.style.transform = `translate3d(${(-pr * Math.max(0, track.scrollWidth - innerWidth)).toFixed(1)}px,0,0)`;
+    $("dayBar").style.transform = `scaleX(${pr.toFixed(3)})`;
+  }
+}
+addEventListener("scroll", () => { if (!fxTicking){ fxTicking = true; requestAnimationFrame(onScrollFx); } }, { passive:true });
+/* on phones the day story is a swipe row: keep its progress bar in step with the swipe */
+if ($("dayTrack")) $("dayTrack").addEventListener("scroll", e => {
+  if ($("day").classList.contains("pinned")) return;
+  const t = e.currentTarget, max = t.scrollWidth - t.clientWidth;
+  $("dayBar").style.transform = `scaleX(${max > 0 ? (t.scrollLeft / max).toFixed(3) : 0})`;
+}, { passive:true });
+addEventListener("resize", () => { sizeDay(); onScrollFx(); });
+
+/* soap bubbles that follow the cursor and burst on click (desktop only, decorative) */
+if (!reduce && fine){
+  let lastBubble = 0, bubbles = 0;
+  const blow = (x, y, size, dx, rise) => {
+    if (bubbles > 45) return;
+    const b = document.createElement("span");
+    b.className = "fx-bubble";
+    b.style.cssText = `left:${x}px;top:${y}px;--s:${size.toFixed(0)}px;--dx:${dx.toFixed(0)}px;--rise:${rise.toFixed(0)}px`;
+    document.body.appendChild(b); bubbles++;
+    b.addEventListener("animationend", () => { b.remove(); bubbles--; });
+  };
+  addEventListener("pointermove", e => {
+    const now = performance.now();
+    if (now - lastBubble < 55) return;
+    lastBubble = now;
+    blow(e.clientX, e.clientY, 6 + Math.random() * 12, (Math.random() - .5) * 50, 60 + Math.random() * 60);
+  }, { passive:true });
+  addEventListener("pointerdown", e => {
+    for (let i = 0; i < 10; i++) blow(e.clientX, e.clientY, 10 + Math.random() * 22, (Math.random() - .5) * 180, 50 + Math.random() * 120);
+  }, { passive:true });
+}
+
+/* 3D tilt with a light sheen on cards, and buttons that lean toward the cursor */
+if (!reduce && fine){
+  let tilted = null, pulled = null;
+  const reset = el => { if (el){ el.style.transform = ""; el.classList.remove("tilting"); } };
+  document.addEventListener("pointermove", e => {
+    const card = e.target.closest(".card, .ex-card, .day-card, .rm-item, .tile, .cap, .award");
+    if (card !== tilted){ reset(tilted); tilted = card; }
+    if (card){
+      const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      card.classList.add("tilting");
+      card.style.transform = `perspective(900px) rotateX(${(-y * 7).toFixed(2)}deg) rotateY(${(x * 9).toFixed(2)}deg) translateY(-6px)`;
+      card.style.setProperty("--mx", ((x + .5) * 100).toFixed(1) + "%");
+      card.style.setProperty("--my", ((y + .5) * 100).toFixed(1) + "%");
+    }
+    const btn = e.target.closest(".btn, .mk, .lang-btn");
+    if (btn !== pulled){ if (pulled) pulled.style.transform = ""; pulled = btn; }
+    if (btn){
+      const r = btn.getBoundingClientRect();
+      btn.style.transform = `translate(${((e.clientX - r.left - r.width / 2) * .22).toFixed(1)}px, ${((e.clientY - r.top - r.height / 2) * .3).toFixed(1)}px)`;
+    }
+  }, { passive:true });
+  document.addEventListener("pointerleave", () => { reset(tilted); tilted = null; if (pulled) pulled.style.transform = ""; pulled = null; });
+}
+
 /* ---------- static text translation ---------- */
 const original = new WeakMap();
 function applyStatic(){
@@ -827,7 +990,7 @@ const observeReveals = () => document.querySelectorAll(".reveal:not(.in)").forEa
 /* ---------- language ---------- */
 function renderAll(){
   renderOffer(); renderHeroShop(); renderRatings(); renderProducts(); renderFinder(false);
-  renderInside(); renderReviews(); renderDetails(); renderVideos(); renderRelated(); renderArticles(); renderShopTable(); renderMums(); renderMomWall(); renderWeekly(false); updatePull(); renderFactory(); renderAwards(); renderTips(); renderFAQ();
+  renderInside(); renderReviews(); renderShowreel(); renderDay(); renderRange(); renderDetails(); renderVideos(); renderRelated(); renderArticles(); renderShopTable(); renderMums(); renderMomWall(); renderWeekly(false); updatePull(); renderFactory(); renderAwards(); renderTips(); renderFAQ();
   renderShop(); renderWhatsApp();
 }
 function setLang(l){
@@ -858,6 +1021,7 @@ menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { menu
 setHero(heroVariant);
 renderHeroOrbit();
 startLive();
+addEventListener("load", () => { sizeDay(); onScrollFx(); });
 setLang(lang);
 // a gentle nudge so parents notice the WhatsApp button
 if (!reduce) setTimeout(() => { $("waFloat").classList.add("hint"); setTimeout(() => $("waFloat").classList.remove("hint"), 4000); }, 6000);
