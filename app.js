@@ -109,7 +109,7 @@ const HI = {
   "Every nappy change":"हर डायपर बदलते समय", "Gentle on the bottom":"नाज़ुक त्वचा पर कोमल",
   "pH-balanced wipes that clean without leaving a red, tight patch behind.":"pH-संतुलित वाइप्स जो साफ़ करते हैं, बिना लाली या खिंचाव छोड़े।",
   "After the bath":"नहाने के बाद", "Oil & massage time":"तेल और मालिश का समय",
-  "Baby oil and turmeric balm for the warm, slow minutes after bath time.":"नहाने के बाद के सुकून भरे पलों के लिए बेबी ऑयल और टर्मरिक बाम।",
+  "Coconut baby oil for the warm, slow minutes after bath time.":"नहाने के बाद के सुकून भरे पलों के लिए कोकोनट बेबी ऑयल।",
   "On the go":"सफ़र में", "Lid that stays shut":"मज़बूती से बंद रहने वाला ढक्कन",
   "The resealable lid keeps wipes moist in the diaper bag, the car and the train.":"रीसील ढक्कन डायपर बैग, कार और ट्रेन में भी वाइप्स को नम रखता है।",
   "Fussy evenings":"बेचैन शामें", "A soothed tummy":"पेट को आराम",
@@ -167,9 +167,10 @@ const HI = {
 
 const norm = s => s.replace(/‑/g, "-").replace(/\s+/g, " ").trim();
 let lang = "en";
-try { if (localStorage.getItem("novel-lang") === "hi") lang = "hi"; } catch (e) {}
+try { const saved = localStorage.getItem("novel-lang"); if (saved && LANG_NAMES[saved]) lang = saved; } catch (e) {}
 const hi = () => lang === "hi";
-const L = s => (hi() && HI[norm(s)]) || s;
+const dict = () => lang === "hi" ? HI : (I18N[lang] || {});
+const L = s => (lang !== "en" && dict()[norm(s)]) || s;
 const pick = (en, h) => (hi() && h) ? h : en;
 const ext = 'target="_blank" rel="noopener"';
 const $ = id => document.getElementById(id);
@@ -179,7 +180,7 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const PAGE = document.body.dataset.page || "index";
 // product links work from any page
 const prodHref = id => (PAGE === "products" ? "#prod-" : "products.html#prod-") + id;
-const detailHref = id => (PAGE === "products" ? "#detail-" : "products.html#detail-") + id;
+const detailHref = id => PRODUCT_SLUGS[id] ? PRODUCT_SLUGS[id] + ".html" : (PAGE === "products" ? "#detail-" : "products.html#detail-") + id;
 
 /* ---------- link tracking ---------- */
 function track(url, place){
@@ -198,9 +199,11 @@ const buyP = (id, place) => buyRow(PRODUCTS[id].q, place, PRODUCTS[id].links);
 document.addEventListener("click", e => {
   const a = e.target.closest("a[data-store], a[data-wa]");
   if (!a) return;
-  (window.dataLayer = window.dataLayer || []).push(a.dataset.wa
+  const ev = a.dataset.wa
     ? { event:"whatsapp_click", placement:a.dataset.wa }
-    : { event:"store_click", store:a.dataset.store, placement:a.dataset.place });
+    : { event:"store_click", store:a.dataset.store, placement:a.dataset.place };
+  (window.dataLayer = window.dataLayer || []).push(ev);
+  if (window.gtag) gtag("event", ev.event, { store:ev.store, placement:ev.placement, page:PAGE });
 });
 
 /* ---------- illustrations ---------- */
@@ -385,8 +388,8 @@ function recommend(age, need, skin){
     nappy:  [wipe, ["diapers", "mat"]],
     go:     [wipe, ["mat", "diapers"]],
     bath:   ["wash", ["soap", wipe]],
-    massage:["oil", ["balm", "roll"]],
-    tummy:  ["roll", ["oil", "balm"]]
+    massage:["oil", ["roll", "soap"]],
+    tummy:  ["roll", ["oil", "wash"]]
   }[need];
   return { main: plan[0], also: plan[1] };
 }
@@ -526,6 +529,8 @@ function renderShop(){
   $("yr").textContent = new Date().getFullYear();
 }
 function renderWhatsApp(){
+  const share = $("rvShare");
+  if (share){ share.href = `https://wa.me/${WHATSAPP.number}?text=${encodeURIComponent("Hi Novel, I would like to share a review of your baby products. You have my permission to show it on your website with my first name and city: ")}`; share.dataset.wa = "review"; }
   const url = `https://wa.me/${WHATSAPP.number}?text=${encodeURIComponent(WHATSAPP.message)}`;
   [["waFloat", "float"], ["faqWa", "faq"], ["footWa", "footer"]].forEach(([id, place]) => {
     const a = $(id); if (!a) return;
@@ -664,7 +669,8 @@ $("wkAges")?.addEventListener("click", e => { const b = e.target.closest("[data-
 const TYPE_LABEL = { wipe:"Baby wipes", care:"Baby care", essential:"Baby essentials" };
 function renderDetails(){
   if (!$("detailList")) return;
-  const list = Object.keys(PRODUCT_INFO).filter(id => PRODUCTS[id]);
+  const only = document.body.dataset.product;
+  const list = Object.keys(PRODUCT_INFO).filter(id => PRODUCTS[id] && (!only || id === only));
   $("detailList").innerHTML = list.map((id, i) => {
     const p = PRODUCTS[id], info = PRODUCT_INFO[id], inside = INSIDE[id];
     return `<article class="detail reveal" id="detail-${id}" style="--tint:${p.tint}">
@@ -681,6 +687,7 @@ function renderDetails(){
         <h4>${L("How to use")}</h4>
         <ol class="d-steps">${pick(info.use, info.hiUse).map(u => `<li>${u}</li>`).join("")}</ol>
         <div class="buy">${buyP(id, "detail-" + id)}</div>
+        ${p.video ? `<div class="d-video">${videoTag(p.video)}</div>` : ""}
       </div>
     </article>`; }).join("");
   autoOpen($("detailList"));
@@ -712,12 +719,60 @@ function renderShopTable(){
 /* ---------- mark the current page in the menu ---------- */
 document.querySelectorAll(`#menu a[data-page="${PAGE}"]`).forEach(a => a.setAttribute("aria-current", "page"));
 
+
+/* ---------- headlines in extra languages ---------- */
+function applyHeadline(){
+  const h1 = document.querySelector("main h1");
+  if (!h1) return;
+  if (h1._en === undefined) h1._en = h1.innerHTML;
+  const t = (I18N_HEADLINES[PAGE] || {})[lang];
+  if (t) h1.innerHTML = t;
+}
+
+/* ---------- brand videos ---------- */
+const videoTag = id => `<video class="lazy-video" muted loop playsinline preload="none" poster="assets/videos/${id}-poster.webp" data-src="assets/videos/${id}.mp4" aria-label="Novel video"></video>`;
+function renderVideos(){
+  if (!$("videoGrid")) return;
+  $("videoGrid").innerHTML = VIDEOS.map((v, i) => `
+    <figure class="vid reveal d${i}">${videoTag(v.id)}
+      <figcaption><b>${pick(v.title, v.hiTitle)}</b><a href="${detailHref(v.product)}">${pName(v.product)} →</a></figcaption>
+    </figure>`).join("");
+}
+const vio = "IntersectionObserver" in window ? new IntersectionObserver(list => list.forEach(e => {
+  const v = e.target;
+  if (e.isIntersecting){ if (!v.src) v.src = v.dataset.src; if (!reduce) v.play().catch(() => {}); }
+  else v.pause();
+}), { threshold:.35 }) : null;
+const watchVideos = () => document.querySelectorAll("video.lazy-video").forEach(v => {
+  if (reduce) v.controls = true;
+  vio ? vio.observe(v) : (v.src = v.dataset.src);
+});
+
+/* ---------- Google Analytics (only when GA_ID is set in config.js) ---------- */
+if (typeof GA_ID === "string" && GA_ID){
+  const s = document.createElement("script"); s.async = true; s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag("js", new Date()); gtag("config", GA_ID);
+}
+
+/* ---------- related products on single product pages ---------- */
+function renderRelated(){
+  const only = document.body.dataset.product;
+  if (!only || !$("relatedList")) return;
+  const type = PRODUCTS[only].type;
+  const rel = Object.keys(PRODUCTS).filter(id => id !== only && PRODUCTS[id].type !== "essential")
+    .sort((a, b) => (PRODUCTS[b].type === type) - (PRODUCTS[a].type === type)).slice(0, 4);
+  $("relatedList").innerHTML = rel.map(id => `<a href="${detailHref(id)}"><span class="thumb" style="background:${PRODUCTS[id].tint}">${art(id)}</span>${pName(id)}</a>`).join("");
+}
+
 /* ---------- static text translation ---------- */
 const original = new WeakMap();
 function applyStatic(){
   document.querySelectorAll("[data-hi]").forEach(el => {
     if (el._en === undefined) el._en = el.innerHTML;
-    el.innerHTML = hi() ? el.dataset.hi : el._en;
+    el.innerHTML = lang === "hi" ? el.dataset.hi : (el.dataset[lang] || el._en);
     if (el.dataset.hiLabel){
       if (el._enLabel === undefined) el._enLabel = el.getAttribute("aria-label");
       el.setAttribute("aria-label", hi() ? el.dataset.hiLabel : el._enLabel);
@@ -730,14 +785,16 @@ function applyStatic(){
   const nodes = [];
   while (walker.nextNode()) nodes.push(walker.currentNode);
   nodes.forEach(n => {
-    if (hi()){
+    if (lang !== "en"){
       const src = original.has(n) ? original.get(n) : n.nodeValue;
-      const t = HI[norm(src)];
+      const t = dict()[norm(src)];
       if (t){ original.set(n, src); n.nodeValue = src.replace(src.trim(), t); }
+      else if (original.has(n)) n.nodeValue = src;
     } else if (original.has(n)){
       n.nodeValue = original.get(n);
     }
   });
+  applyHeadline();
 }
 
 /* ---------- reveal on scroll, counters, QC ticket ---------- */
@@ -767,22 +824,25 @@ const observeReveals = () => document.querySelectorAll(".reveal:not(.in)").forEa
 /* ---------- language ---------- */
 function renderAll(){
   renderOffer(); renderHeroShop(); renderRatings(); renderProducts(); renderFinder(false);
-  renderInside(); renderReviews(); renderDetails(); renderArticles(); renderShopTable(); renderMums(); renderMomWall(); renderWeekly(false); updatePull(); renderFactory(); renderAwards(); renderTips(); renderFAQ();
+  renderInside(); renderReviews(); renderDetails(); renderVideos(); renderRelated(); renderArticles(); renderShopTable(); renderMums(); renderMomWall(); renderWeekly(false); updatePull(); renderFactory(); renderAwards(); renderTips(); renderFAQ();
   renderShop(); renderWhatsApp();
 }
 function setLang(l){
   lang = l;
   try { localStorage.setItem("novel-lang", l); } catch (e) {}
   document.documentElement.lang = l;
-  const btn = $("langBtn");
-  btn.textContent = l === "hi" ? "English" : "हिंदी";
-  btn.lang = l === "hi" ? "en" : "hi";
-  btn.setAttribute("aria-label", l === "hi" ? "Switch to English" : "हिंदी में देखें");
+  const sel = $("langSel");
+  if (sel) sel.value = l;
   renderAll();
   applyStatic();
   observeReveals();
+  watchVideos();
 }
-$("langBtn").addEventListener("click", () => setLang(hi() ? "en" : "hi"));
+const langSel = $("langSel");
+if (langSel){
+  langSel.innerHTML = Object.entries(LANG_NAMES).map(([k, n]) => `<option value="${k}" lang="${k}">${n}</option>`).join("");
+  langSel.addEventListener("change", () => setLang(langSel.value));
+}
 
 /* ---------- nav ---------- */
 const head = $("siteHead");

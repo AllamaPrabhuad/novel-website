@@ -13,8 +13,8 @@ const SHOW_PLACEHOLDERS = false;
    Put any deal here (e.g. "Buy 5 Get 5 free on Goat Milk wipes").
    Set text to "" to hide the bar. */
 const OFFER = {
-  text: "Now from Novel: Head to Toe Wash, Baby Oil, Tummy Roll-On & Turmeric Balm.",
-  hi:   "अब Novel से: हेड टू टो वॉश, बेबी ऑयल, टमी रोल-ऑन और टर्मरिक बाम।",
+  text: "Now from Novel: Head to Toe Wash, Coconut Baby Oil, Tummy Roll-On & After Bite Turmeric Balm.",
+  hi:   "अब Novel से: हेड टू टो वॉश, कोकोनट बेबी ऑयल, टमी रोल-ऑन और आफ़्टर बाइट टर्मरिक बाम।",
   cta: "Explore", ctaHi: "देखें",
   href: "products.html#care"
 };
@@ -64,14 +64,14 @@ const PRODUCTS = {
   aloe:  { type:"wipe", name:"Aloe Vera & Chamomile", short:"Aloe vera", count:"80 wipes · with lid", tag:"Bestseller",
            img:"assets/products/aloe-wipes.webp",
            c:"#8DC163", cs:"#6FA548", tint:"#E6F2D4", q:"Novel aloe vera baby wipes",
-           links:{ amazon:"https://www.amazon.in/dp/B09GP8BLSM" },
+           links:{ amazon:"https://www.amazon.in/dp/B09GP8BLSM", flipkart:"https://www.flipkart.com/novel-baby-wipes-80-sheets-pack-lid/p/itmc0c6b52313ab2", meesho:"https://www.meesho.com/novel-baby-wipes-80-sheets-with-lid/p/4ruy7g" },
            desc:"Our everyday wipe. Soothing aloe vera and chamomile keep skin hydrated through every change.",
            feat:["Plant extracts","Extra thick","Daily use"],
            hi:{ desc:"हमारा रोज़ का वाइप। एलोवेरा और कैमोमाइल हर बार त्वचा को नम और आरामदायक रखते हैं।", feat:["प्लांट एक्सट्रैक्ट","एक्स्ट्रा थिक","रोज़ाना इस्तेमाल"] } },
   goat:  { type:"wipe", name:"Goat Milk", short:"Goat milk", count:"72 wipes · with lid", tag:"India's first",
            img:"assets/products/goat-milk-wipes.webp",
            c:"#8A6BB8", cs:"#6A4E98", tint:"#EFE8F7", q:"Novel goat milk baby wipes",
-           links:{ meesho:"https://www.meesho.com/novel-goat-milk-baby-wipes-72s-sheet/p/6957ih" },
+           links:{ flipkart:"https://www.flipkart.com/novel-goat-milk-baby-wipes-72-s-sheet-pack-3/p/itm208df145a790a", meesho:"https://www.meesho.com/novel-goat-milk-baby-wipes-72s-sheet/p/6957ih" },
            desc:"India's first goat milk baby wipes. Rich and nourishing for dry or delicate skin.",
            feat:["Deep nourishment","Hypoallergenic","Resealable lid"],
            hi:{ desc:"भारत के पहले गोट मिल्क बेबी वाइप्स। रूखी या नाज़ुक त्वचा के लिए भरपूर पोषण।", feat:["गहरा पोषण","हाइपोएलर्जेनिक","रीसील ढक्कन"] } },
@@ -84,13 +84,13 @@ const PRODUCTS = {
            hi:{ desc:"ख़ुशबू-रहित और बेहद शुद्ध। नवजात और अति-संवेदनशील त्वचा के लिए सही चुनाव।", feat:["ख़ुशबू-रहित","99% पानी","नवजात के लिए सुरक्षित"] } },
 
   wash:  { type:"care", kind:"pump", name:"Head to Toe Baby Wash", tag:"Tear-free", c:"#9ED3E6", tint:"#E1F1FA",
-           img:"assets/products/head-to-toe-wash.webp", q:"Novel head to toe baby wash",
+           img:"assets/products/head-to-toe-wash.webp", q:"Novel head to toe baby wash", video:"baby-shampoo",
            links:{ amazon:"https://www.amazon.in/dp/B0HCW2HGJF" },
            desc:"Tear-free daily moisturising wash for hair and body, with oat extract.",
            hi:{ desc:"बालों और शरीर के लिए आँसू-रहित, रोज़ाना मॉइस्चराइज़िंग वॉश, ओट एक्सट्रैक्ट के साथ।" } },
   oil:   { type:"care", kind:"oil", name:"Coconut Baby Oil", c:"#F2C66D", tint:"#FBEFD0",
            img:"assets/products/coconut-baby-oil.webp", q:"Novel cold pressed coconut oil for babies",
-           links:{ amazon:"https://www.amazon.in/dp/B0HCVX77MV" },
+           links:{ amazon:"https://www.amazon.in/dp/B0HCVX77MV", flipkart:"https://www.flipkart.com/novel-cold-pressed-coconut-oil-babies-100-natural-0-months-200-ml/p/itmc7ea54af699ff" }, video:"baby-oil",
            desc:"Cold-pressed coconut oil for gentle baby massage.",
            hi:{ desc:"शिशु की कोमल मालिश के लिए कोल्ड-प्रेस्ड नारियल तेल।" } },
   roll:  { type:"care", kind:"roll", name:"Tummy Roll-On", c:"#8DC163", tint:"#E6F2D4",
@@ -98,11 +98,13 @@ const PRODUCTS = {
            links:{ amazon:"https://www.amazon.in/dp/B0H9L7L6NX" },
            desc:"Ayurvedic hing and saunf oil for gentle comfort from gas and colic.",
            hi:{ desc:"गैस और कोलिक में कोमल आराम के लिए आयुर्वेदिक हींग और सौंफ़ तेल।" } },
-  balm:  { type:"care", kind:"tin", name:"Turmeric Balm", c:"#E8A93A", tint:"#FAE6C2", img:"", q:"Novel baby turmeric balm",
-           desc:"A warm, traditional balm for baby's skin.", hi:{ desc:"शिशु की त्वचा के लिए पारंपरिक, गर्माहट भरा बाम।" } },
+  balm:  { type:"care", kind:"tin", name:"After Bite Turmeric Balm", count:"25 g", c:"#E8A93A", tint:"#FAE6C2",
+           img:"assets/products/turmeric-balm.webp", photo:"cover", q:"Novel after bite turmeric balm", video:"turmeric-balm",
+           links:{ flipkart:"https://www.flipkart.com/novel-after-bite-turmeric-balm-soothing-comfort-insect-bites-25-g/p/itmedec09420d5b0" },
+           desc:"A turmeric balm that soothes little arms and legs after insect bites.", hi:{ desc:"कीड़े के काटने के बाद नन्हे हाथ-पैरों को आराम देने वाला हल्दी बाम।" } },
   soap:  { type:"care", kind:"tin", name:"Babio Natural Baby Soap", c:"#8A6BB8", tint:"#EFE8F7",
            img:"assets/photos/babio-soap-almonds.webp", photo:"cover", q:"Novel Babio baby soap",
-           links:{ amazon:"https://www.amazon.in/dp/B0HHFX9DZJ" },
+           links:{ amazon:"https://www.amazon.in/dp/B0HHFX9DZJ", flipkart:"https://www.flipkart.com/novel-baby-soap-buy-6-3-free/p/itmaab3e5acb924f", meesho:"https://www.meesho.com/novel-babio-baby-soap-buy-4-get-2-free-75g-x-6-value-pack-gentle-moisturizing-cleanser-with-olive-almond-oil-for-delicate-baby-skin/p/bczdk0" }, video:"baby-soap",
            desc:"Moisturising baby soap with glycerine, almond oil and olive oil.",
            hi:{ desc:"ग्लिसरीन, बादाम तेल और जैतून तेल वाला मॉइस्चराइज़िंग बेबी सोप।" } },
 
@@ -179,9 +181,9 @@ const FAQ = [
     a:"Press the lid shut after every use and keep the pack away from direct sunlight and heat.",
     hq:"वाइप्स को सूखने से कैसे बचाएँ?",
     ha:"हर बार इस्तेमाल के बाद ढक्कन दबाकर बंद करें और पैक को सीधी धूप और गर्मी से दूर रखें।" },
-  { q:"How do I use the Turmeric Balm and Tummy Roll-On?",
+  { q:"How do I use the After Bite Turmeric Balm and Tummy Roll-On?",
     a:"Follow the directions and age guidance on the pack. Try any new product on a small patch of skin first, and ask your paediatrician if you're unsure.",
-    hq:"टर्मरिक बाम और टमी रोल-ऑन कैसे इस्तेमाल करें?",
+    hq:"आफ़्टर बाइट टर्मरिक बाम और टमी रोल-ऑन कैसे इस्तेमाल करें?",
     ha:"पैक पर दिए निर्देश और उम्र संबंधी जानकारी का पालन करें। कोई भी नया प्रोडक्ट पहले त्वचा के छोटे हिस्से पर आज़माएँ, और शक हो तो अपने शिशु रोग विशेषज्ञ से पूछें।" },
   { q:"Where can I buy Novel products?",
     a:"On Amazon, Flipkart and Meesho, or in minutes on Blinkit and Swiggy Instamart. Use the shop buttons on this page.",
@@ -204,7 +206,7 @@ const TIPS = [
 <h4>Get everything ready first</h4><ul><li>Warm the room and keep a towel, clean nappy and clothes within reach.</li><li>Use warm, not hot, water. Test it with your elbow or the inside of your wrist — it should feel comfortably warm.</li><li>Never leave your baby alone in or near water, even for a moment.</li></ul>
 <h4>Keep it short and gentle</h4><p>Five to ten minutes is plenty. Use a small amount of mild wash, rinse well, then pat dry — especially in the folds of the neck, arms and thighs.</p>
 <h4>How often?</h4><p>Two or three baths a week is enough for most newborns. On other days, clean the face, hands and nappy area with a soft wipe.</p>` },
-  { id:"massage", tag:"Massage", hiTag:"मालिश", mins:3, tint:"#FBEFD0", icon:"oil", products:["oil","balm","roll"],
+  { id:"massage", tag:"Massage", hiTag:"मालिश", mins:3, tint:"#FBEFD0", icon:"oil", products:["oil","roll"],
     title:"A simple baby massage routine", hiTitle:"शिशु की मालिश का आसान तरीका",
     excerpt:"When to massage, what order to follow and when to skip it.", hiExcerpt:"कब मालिश करें, किस क्रम में करें और कब न करें।",
     body:`<p>Massage is a lovely way to bond, and many parents find it helps their baby settle.</p>
@@ -306,10 +308,29 @@ const PRODUCT_INFO = {
   roll:  { bestFor:"Gas and tummy discomfort", hiBestFor:"गैस और पेट की बेचैनी",
            use:["Roll gently around baby's navel in a clockwise direction.","Follow the age guidance and directions on the pack."],
            hiUse:["शिशु की नाभि के चारों ओर घड़ी की दिशा में हल्के से लगाएँ।","पैक पर दी गई उम्र संबंधी जानकारी और निर्देशों का पालन करें।"] },
-  balm:  { bestFor:"A warm, soothing massage", hiBestFor:"गर्माहट भरी, आरामदायक मालिश",
-           use:["Take a small amount on your fingertips.","Massage in gently.","Follow the directions on the pack, and try it on a small patch first."],
-           hiUse:["उँगलियों पर थोड़ा-सा लें।","हल्के से मालिश करें।","पैक पर दिए निर्देशों का पालन करें और पहले छोटे हिस्से पर आज़माएँ।"] },
+  balm:  { bestFor:"Soothing skin after insect bites", hiBestFor:"कीड़े के काटने के बाद त्वचा को आराम",
+           use:["Apply a small amount gently on the bite.","For external use only. Don't use on broken skin.","If irritation persists, consult your paediatrician."],
+           hiUse:["काटे हुए हिस्से पर थोड़ा-सा हल्के से लगाएँ।","सिर्फ़ बाहरी इस्तेमाल के लिए। कटी-फटी त्वचा पर न लगाएँ।","जलन बनी रहे तो अपने शिशु रोग विशेषज्ञ से संपर्क करें।"] },
   soap:  { bestFor:"A gentle, moisturising daily bath", hiBestFor:"रोज़ का कोमल, मॉइस्चराइज़िंग स्नान",
            use:["Lather the soap in wet hands.","Wash baby gently.","Rinse well and pat dry."],
            hiUse:["गीले हाथों में सोप का झाग बनाएँ।","शिशु को हल्के से नहलाएँ।","अच्छी तरह धोकर थपथपाकर सुखाएँ।"] }
+};
+
+/* ---------- Brand videos (Mum & baby page and product details) ---------- */
+const VIDEOS = [
+  { id:"baby-oil",      title:"The oldest ritual there is", hiTitle:"सबसे पुरानी रस्म", product:"oil" },
+  { id:"baby-soap",     title:"Bath time, made gentle",     hiTitle:"कोमल स्नान का समय", product:"soap" },
+  { id:"baby-shampoo",  title:"Splashes and giggles",       hiTitle:"छपाक और खिलखिलाहट", product:"wash" },
+  { id:"turmeric-balm", title:"Nature's healing touch",     hiTitle:"प्रकृति का कोमल स्पर्श", product:"balm" }
+];
+
+/* ---------- Google Analytics ----------
+   Paste your GA4 Measurement ID (looks like "G-XXXXXXXXXX"). Leave "" to turn off. */
+const GA_ID = "";
+
+/* ---------- One page per product (file names, without .html) ---------- */
+const PRODUCT_SLUGS = {
+  aloe:"aloe-vera-baby-wipes", goat:"goat-milk-baby-wipes", water:"water-baby-wipes",
+  wash:"head-to-toe-baby-wash", oil:"coconut-baby-oil", roll:"tummy-roll-on",
+  balm:"after-bite-turmeric-balm", soap:"babio-baby-soap"
 };
