@@ -167,7 +167,10 @@ const HI = {
   "Delivered in minutes":"मिनटों में डिलीवरी",
   "Fast delivery across India":"पूरे भारत में तेज़ डिलीवरी", "Great deals all year":"पूरे साल शानदार डील्स",
   "Everyday low prices":"रोज़ कम दाम", "At your door in minutes":"मिनटों में आपके दरवाज़े पर",
-  "Shop":"ख़रीदें", "Explore":"देखें", "Contact":"संपर्क", "Made with care in India":"भारत में प्यार से बना"
+  "Shop":"ख़रीदें", "Explore":"देखें", "Contact":"संपर्क", "Made with care in India":"भारत में प्यार से बना",
+  "Buy online":"ऑनलाइन ख़रीदें", "Watch":"देखें", "Soap":"सोप", "Mineral oil":"मिनरल ऑयल", "Silicones":"सिलिकॉन",
+  "Synthetic fragrance":"सिंथेटिक ख़ुशबू", "Synthetic colour":"सिंथेटिक रंग", "Artificial fragrance":"आर्टिफ़िशियल ख़ुशबू",
+  "Up to 10 hrs":"10 घंटे तक", "Waterproof":"वॉटरप्रूफ़", "S to XXL":"S से XXL", "Small to X-Large":"स्मॉल से एक्स-लार्ज"
 };
 
 const norm = s => s.replace(/‑/g, "-").replace(/\s+/g, " ").trim();
@@ -364,16 +367,18 @@ function renderProducts(){
     card.addEventListener("mouseenter", on); card.addEventListener("mouseleave", off);
     card.addEventListener("focusin", on); card.addEventListener("focusout", off);
   });
-  if ($("cGrid")) $("cGrid").innerHTML = ids("care").map((id, i) => { const p = PRODUCTS[id]; return `
-    <article class="card reveal d${i}" id="prod-${id}" style="--tint:${p.tint}">
+  const careCard = (id, i) => { const p = PRODUCTS[id]; return `
+    <article class="card reveal d${i % 4}" id="prod-${id}" style="--tint:${p.tint}">
       ${p.tag ? `<span class="tag">${L(p.tag)}</span>` : ""}
       <div class="art">${art(id)}</div>
-      <h3>${p.name}</h3>
+      <h3>${pName(id)}</h3>
       <p>${pick(p.desc, p.hi.desc)}</p>
       <div class="buy">${buyP(id, "product-" + id)}</div>
       <a class="d-link" href="${detailHref(id)}">${L("Full details →")}</a>
-    </article>`; }).join("");
-  if ($("more")) $("more").innerHTML = ids("essential").map((id, i) => { const p = PRODUCTS[id]; return storeLink("amazon",
+    </article>`; };
+  if ($("cGrid")) $("cGrid").innerHTML = ids("care").map(careCard).join("");
+  if ($("eGrid")) $("eGrid").innerHTML = ids("essential").filter(id => PRODUCTS[id].img).map(careCard).join("");
+  if ($("more")) $("more").innerHTML = ids("essential").filter(id => !PRODUCTS[id].img).map((id, i) => { const p = PRODUCTS[id]; return storeLink("amazon",
     STORES.amazon.search(p.q), "product-" + id,
     `<span class="ico">${iconSVG(p.icon)}</span><span><b>${pName(id)}</b><span>${pick(p.desc, p.hi.desc)} · ${L("Shop on Amazon →")}</span></span>`,
     `class="mini reveal d${i}" id="prod-${id}"`); }).join("");
@@ -718,7 +723,7 @@ function renderArticles(){
 /* ---------- shop page: product × store table ---------- */
 function renderShopTable(){
   if (!$("shopTable")) return;
-  const list = Object.keys(PRODUCTS).filter(id => PRODUCTS[id].type !== "essential");
+  const list = Object.keys(PRODUCTS).filter(id => PRODUCTS[id].type !== "essential" || PRODUCT_SLUGS[id]);
   $("shopTable").innerHTML = `<thead><tr><th>${L("Product")}</th>${stores.map(([, s]) => `<th><span class="st-chip" style="--bg:${s.bg};--fg:${s.fg}">${s.letter}</span>${s.short || s.name}</th>`).join("")}</tr></thead>
     <tbody>${list.map(id => { const p = PRODUCTS[id]; return `<tr>
       <th scope="row"><a href="${detailHref(id)}"><span class="thumb" style="background:${p.tint}">${art(id)}</span>${pName(id)}</a></th>
@@ -772,7 +777,7 @@ function renderRelated(){
   const only = document.body.dataset.product;
   if (!only || !$("relatedList")) return;
   const type = PRODUCTS[only].type;
-  const rel = Object.keys(PRODUCTS).filter(id => id !== only && PRODUCTS[id].type !== "essential")
+  const rel = Object.keys(PRODUCTS).filter(id => id !== only && (PRODUCTS[id].type !== "essential" || PRODUCT_SLUGS[id]))
     .sort((a, b) => (PRODUCTS[b].type === type) - (PRODUCTS[a].type === type)).slice(0, 4);
   $("relatedList").innerHTML = rel.map(id => `<a href="${detailHref(id)}"><span class="thumb" style="background:${PRODUCTS[id].tint}">${art(id)}</span>${pName(id)}</a>`).join("");
 }
@@ -933,6 +938,144 @@ if (!reduce && fine){
   document.addEventListener("pointerleave", () => { reset(tilted); tilted = null; if (pulled) pulled.style.transform = ""; pulled = null; });
 }
 
+/* =====================================================================
+   PRODUCT PAGES: buy boxes, gallery, photo viewer, tabs, sticky buy bar
+   ===================================================================== */
+const PDP_ID = document.body.dataset.product;
+const linkFor = (id, k) => (PRODUCTS[id].links && PRODUCTS[id].links[k]) || STORES[k].search(PRODUCTS[id].q);
+const storeBtn = (id, k, place) => { const s = STORES[k]; return storeLink(k, linkFor(id, k), place,
+  `<span class="chip">${s.letter}</span><span><small>${L(s.quick ? "Order on" : "Buy on")}</small>${s.short || s.name}</span>`,
+  `class="mk" style="--bg:${s.bg};--fg:${s.fg}"`); };
+function renderPdp(){
+  if (!PDP_ID || !PRODUCTS[PDP_ID]) return;
+  const id = PDP_ID, p = PRODUCTS[id], inside = INSIDE[id], info = PRODUCT_INFO[id];
+  document.querySelectorAll("[data-buy]").forEach(box => {
+    const place = box.dataset.place || "pdp-" + id;
+    box.innerHTML = `<p class="pb-label">${L("Buy online")}</p><div class="pb-row">${online.map(([k]) => storeBtn(id, k, place)).join("")}</div>
+      <p class="pb-label">${L("⚡ In minutes")}</p><div class="pb-row">${quick.map(([k]) => storeBtn(id, k, place)).join("")}</div>`;
+  });
+  if ($("pdpInside") && inside) $("pdpInside").innerHTML = inside.items.map((k, i) => { const g = INGREDIENTS[k]; return `
+    <article class="ing reveal d${i % 3}"><span class="ing-ico" aria-hidden="true">${g.icon}</span><h3>${pick(g.name, g.hi)}</h3><p>${pick(g.why, g.hiWhy)}</p></article>`; }).join("");
+  if ($("pdpFree")) $("pdpFree").innerHTML = inside && inside.free ? `<p class="eyebrow">${L("Free from")}</p>${inside.free.map(f => `<s>${L(f)}</s>`).join("")}` : "";
+  if ($("pdpUse") && info) $("pdpUse").innerHTML = pick(info.use, info.hiUse).map((u, i) =>
+    `<li class="reveal d${i % 3}"><span class="pu-n">${i + 1}</span><p>${u}</p></li>`).join("");
+  const v = p.video && videoById(p.video);
+  if (v && $("pdpVideo")){
+    $("pdpVideoSec").hidden = false;
+    $("pdpVideo").innerHTML = `${videoTag(v.id)}<figcaption><span class="eyebrow">${L("Watch")}</span><b>${pick(v.title, v.hiTitle)}</b></figcaption>`;
+  }
+  const wa = $("pdpWa");
+  if (wa){ wa.href = `https://wa.me/${WHATSAPP.number}?text=${encodeURIComponent(`Hi Novel, I have a question about the ${p.name}.`)}`; wa.dataset.wa = "pdp-" + id; }
+  const [k, s] = online.find(([key]) => p.links && p.links[key]) || online[0];
+  if ($("bbGo")) $("bbGo").outerHTML = storeLink(k, linkFor(id, k), "pdp-bar-" + id,
+    hi() ? `${s.short || s.name} पर ख़रीदें` : `Buy on ${s.short || s.name}`, `class="btn btn-forest bb-go" id="bbGo"`);
+}
+
+function initPdp(){
+  const g = $("pdpGallery");
+  if (!g) return;
+  const root = document.documentElement, siteHead = $("siteHead"), tabs = $("pdpTabs");
+  const measure = () => {
+    root.style.setProperty("--head-h", siteHead.offsetHeight + "px");
+    root.style.scrollPaddingTop = (siteHead.offsetHeight + (tabs ? tabs.offsetHeight : 0) + 14) + "px";
+  };
+  measure();
+  addEventListener("resize", measure);
+  if ("ResizeObserver" in window) new ResizeObserver(measure).observe(siteHead);
+
+  // gallery: thumbnails, arrows, swipe, keyboard and hover zoom
+  const thumbs = [...g.querySelectorAll(".pg-thumb")], img = $("pgImg"), stage = g.querySelector(".pg-stage");
+  let cur = 0, swiped = false;
+  const show = i => {
+    cur = (i + thumbs.length) % thumbs.length;
+    const t = thumbs[cur], src = t.dataset.src;
+    thumbs.forEach((b, n) => b.setAttribute("aria-selected", n === cur));
+    $("pgNum").textContent = cur + 1;
+    img.classList.add("swap");
+    const pre = new Image(); pre.src = src;
+    const done = () => {
+      img.src = src; img.className = "fit-" + t.dataset.fit + " swap";
+      img.alt = `Novel ${document.querySelector("main h1").textContent}, photo ${cur + 1}`;
+      requestAnimationFrame(() => requestAnimationFrame(() => img.classList.remove("swap")));
+    };
+    (pre.decode ? pre.decode() : Promise.resolve()).then(done, done);
+    const row = t.parentElement;
+    row.scrollTo({ left: t.offsetLeft - (row.clientWidth - t.clientWidth) / 2, top: t.offsetTop - (row.clientHeight - t.clientHeight) / 2, behavior: reduce ? "auto" : "smooth" });
+  };
+  thumbs.forEach((b, i) => b.addEventListener("click", () => show(i)));
+  g.querySelector(".pg-nav.prev").addEventListener("click", () => show(cur - 1));
+  g.querySelector(".pg-nav.next").addEventListener("click", () => show(cur + 1));
+  g.addEventListener("keydown", e => { if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
+  let x0 = null;
+  stage.addEventListener("pointerdown", e => { x0 = e.clientX; });
+  stage.addEventListener("pointerup", e => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40){ swiped = true; show(cur + (dx < 0 ? 1 : -1)); }
+  });
+  if (fine && !reduce){
+    stage.addEventListener("pointermove", e => {
+      const r = stage.getBoundingClientRect();
+      img.style.transformOrigin = `${((e.clientX - r.left) / r.width * 100).toFixed(1)}% ${((e.clientY - r.top) / r.height * 100).toFixed(1)}%`;
+      stage.classList.add("zoom");
+    });
+    stage.addEventListener("pointerleave", () => stage.classList.remove("zoom"));
+  }
+
+  // full-screen photo viewer
+  const lb = $("lightbox"), lbImg = $("lbImg");
+  const lbShow = i => {
+    cur = (i + thumbs.length) % thumbs.length;
+    lbImg.src = thumbs[cur].dataset.src; lbImg.alt = img.alt;
+    $("lbCount").textContent = `${cur + 1} / ${thumbs.length}`;
+  };
+  stage.addEventListener("click", () => {
+    if (swiped){ swiped = false; return; }
+    if (!lb || !lb.showModal) return;
+    lbShow(cur); lb.showModal();
+  });
+  if (lb){
+    lb.querySelector(".lb-close").addEventListener("click", () => lb.close());
+    lb.querySelector(".lb-nav.prev").addEventListener("click", () => lbShow(cur - 1));
+    lb.querySelector(".lb-nav.next").addEventListener("click", () => lbShow(cur + 1));
+    lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+    lb.addEventListener("keydown", e => { if (e.key === "ArrowRight") lbShow(cur + 1); if (e.key === "ArrowLeft") lbShow(cur - 1); });
+    lb.addEventListener("close", () => show(cur));
+    let lx = null;
+    lbImg.addEventListener("pointerdown", e => { lx = e.clientX; });
+    lbImg.addEventListener("pointerup", e => { if (lx === null) return; const dx = e.clientX - lx; lx = null; if (Math.abs(dx) > 40) lbShow(cur + (dx < 0 ? 1 : -1)); });
+  }
+
+  // tabs follow the section you're reading
+  if (tabs && "IntersectionObserver" in window){
+    const links = [...tabs.querySelectorAll("a")];
+    const strip = tabs.querySelector(".wrap");
+    const spy = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => {
+        const on = a.getAttribute("href") === "#" + e.target.id;
+        a.classList.toggle("on", on);
+        if (on) strip.scrollTo({ left: a.offsetLeft - 16, behavior: reduce ? "auto" : "smooth" });
+      });
+    }), { rootMargin:"-40% 0px -55% 0px" });
+    links.forEach(a => { const sec = document.querySelector(a.getAttribute("href")); if (sec) spy.observe(sec); });
+  }
+
+  // sticky buy bar once the main buy box has scrolled away
+  const bar = $("buyBar"), box = $("pdpBuy"), last = document.querySelector(".pdp-final");
+  if (bar && box && "IntersectionObserver" in window){
+    let past = false, atEnd = false;
+    const update = () => {
+      const on = past && !atEnd;
+      bar.classList.toggle("on", on); bar.setAttribute("aria-hidden", !on); bar.inert = !on;
+      document.body.classList.toggle("bb-on", on);
+    };
+    bar.inert = true;
+    new IntersectionObserver(([e]) => { past = !e.isIntersecting && e.boundingClientRect.top < 0; update(); }).observe(box);
+    if (last) new IntersectionObserver(([e]) => { atEnd = e.isIntersecting; update(); }).observe(last);
+  }
+}
+
 /* ---------- static text translation ---------- */
 const original = new WeakMap();
 function applyStatic(){
@@ -991,7 +1134,7 @@ const observeReveals = () => document.querySelectorAll(".reveal:not(.in)").forEa
 function renderAll(){
   renderOffer(); renderHeroShop(); renderRatings(); renderProducts(); renderFinder(false);
   renderInside(); renderReviews(); renderShowreel(); renderDay(); renderRange(); renderDetails(); renderVideos(); renderRelated(); renderArticles(); renderShopTable(); renderMums(); renderMomWall(); renderWeekly(false); updatePull(); renderFactory(); renderAwards(); renderTips(); renderFAQ();
-  renderShop(); renderWhatsApp();
+  renderShop(); renderWhatsApp(); renderPdp();
 }
 function setLang(l){
   lang = l;
@@ -1022,6 +1165,7 @@ setHero(heroVariant);
 renderHeroOrbit();
 startLive();
 addEventListener("load", () => { sizeDay(); onScrollFx(); });
+initPdp();
 setLang(lang);
 // a gentle nudge so parents notice the WhatsApp button
 if (!reduce) setTimeout(() => { $("waFloat").classList.add("hint"); setTimeout(() => $("waFloat").classList.remove("hint"), 4000); }, 6000);
