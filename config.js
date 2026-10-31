@@ -326,7 +326,7 @@ const VIDEOS = [
 
 /* ---------- Google Analytics ----------
    Paste your GA4 Measurement ID (looks like "G-XXXXXXXXXX"). Leave "" to turn off. */
-const GA_ID = "";
+const GA_ID = "G-DGTXRTYKWN";
 
 /* ---------- One page per product (file names, without .html) ---------- */
 const PRODUCT_SLUGS = {
