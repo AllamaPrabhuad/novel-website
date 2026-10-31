@@ -107,6 +107,11 @@ const PRODUCTS = {
            links:{ amazon:"https://www.amazon.in/dp/B0HHFX9DZJ", flipkart:"https://www.flipkart.com/novel-baby-soap-buy-6-3-free/p/itmaab3e5acb924f", meesho:"https://www.meesho.com/novel-babio-baby-soap-buy-4-get-2-free-75g-x-6-value-pack-gentle-moisturizing-cleanser-with-olive-almond-oil-for-delicate-baby-skin/p/bczdk0" }, video:"baby-soap",
            desc:"Moisturising baby soap with glycerine, almond oil and olive oil.",
            hi:{ desc:"ग्लिसरीन, बादाम तेल और जैतून तेल वाला मॉइस्चराइज़िंग बेबी सोप।" } },
+  detergent:{ type:"care", kind:"pump", name:"Baby Liquid Detergent", count:"1000 ml", tag:"Baby laundry", c:"#8DC163", tint:"#E6F2D4",
+           img:"assets/products/baby-liquid-detergent.webp", q:"Novel plant enriched baby liquid detergent", video:"baby-detergent",
+           links:{ amazon:"https://www.amazon.in/dp/B0GTZSBDWD", flipkart:"https://www.flipkart.com/novel-baby-liquid-detergent-anti-bacterial-neem-coconut-removes-milk-food-stains-detergent/p/itmf1a2ed7d3961d" },
+           desc:"Plant-enriched laundry detergent for baby clothes, with neem and coconut-based cleansers that help lift stains and odours.",
+           hi:{ desc:"बच्चों के कपड़ों के लिए प्लांट-एनरिच्ड लॉन्ड्री डिटर्जेंट, नीम और नारियल-आधारित क्लींज़र के साथ, जो दाग और गंध हटाने में मदद करते हैं।" } },
 
   diapers:{ type:"essential", icon:"diaper", name:"Baby diapers", tint:"#ECF5D8", q:"Novel baby diapers",
            desc:"Soft, leak-guarded comfort", hi:{ name:"बेबी डायपर", desc:"मुलायम, लीक से सुरक्षा" } },
@@ -185,6 +190,10 @@ const FAQ = [
     a:"Follow the directions and age guidance on the pack. Try any new product on a small patch of skin first, and ask your paediatrician if you're unsure.",
     hq:"आफ़्टर बाइट टर्मरिक बाम और टमी रोल-ऑन कैसे इस्तेमाल करें?",
     ha:"पैक पर दिए निर्देश और उम्र संबंधी जानकारी का पालन करें। कोई भी नया प्रोडक्ट पहले त्वचा के छोटे हिस्से पर आज़माएँ, और शक हो तो अपने शिशु रोग विशेषज्ञ से पूछें।" },
+  { q:"Is the Baby Liquid Detergent safe for newborn clothes?",
+    a:"It's made for baby laundry: pH-balanced, with an IFRA-certified allergen-free fragrance, and made without phosphates, sulphates, parabens, phthalates and dyes. You can use it for hand wash or machine wash.",
+    hq:"क्या बेबी लिक्विड डिटर्जेंट नवजात के कपड़ों के लिए सुरक्षित है?",
+    ha:"यह बच्चों के कपड़ों के लिए बना है: pH-संतुलित, IFRA-प्रमाणित एलर्जन-फ़्री ख़ुशबू के साथ, और फ़ॉस्फ़ेट, सल्फ़ेट, पैराबेन, थैलेट और रंगों के बिना। इसे हाथ से या मशीन में धुलाई, दोनों के लिए इस्तेमाल कर सकते हैं।" },
   { q:"Where can I buy Novel products?",
     a:"On Amazon, Flipkart and Meesho, or in minutes on Blinkit and Swiggy Instamart. Use the shop buttons on this page.",
     hq:"Novel प्रोडक्ट्स कहाँ से ख़रीदें?",
@@ -245,6 +254,9 @@ const INGREDIENTS = {
   hing:      { name:"Hing (asafoetida) oil", hi:"हींग तेल", icon:"🌱", why:"Traditionally used for tummy comfort in Ayurveda.",   hiWhy:"आयुर्वेद में पेट के आराम के लिए पारंपरिक रूप से इस्तेमाल होता है।" },
   saunf:     { name:"Saunf (fennel) oil", hi:"सौंफ़ तेल",    icon:"🌿", why:"A traditional ingredient for easing gas.",             hiWhy:"गैस में आराम के लिए एक पारंपरिक तत्व।" },
   almond:    { name:"Almond oil",      hi:"बादाम तेल",       icon:"🌰", why:"Nourishes and softens skin.",                          hiWhy:"त्वचा को पोषण देता है और मुलायम बनाता है।" },
+  neem:      { name:"Neem",            hi:"नीम",            icon:"🌿", why:"A plant ingredient in the cleaning formula that helps remove stains and odours.", hiWhy:"सफ़ाई फ़ॉर्मूले का पौधा-आधारित हिस्सा, जो दाग और गंध हटाने में मदद करता है।" },
+  coconutClean:{ name:"Coconut-based cleansers", hi:"नारियल-आधारित क्लींज़र", icon:"🥥", why:"Plant-derived cleansers that wash baby clothes clean and fresh.", hiWhy:"पौधों से बने क्लींज़र जो बच्चों के कपड़ों को साफ़ और ताज़ा धोते हैं।" },
+  fragrance: { name:"Allergen-free fragrance", hi:"एलर्जन-फ़्री ख़ुशबू", icon:"🌸", why:"An IFRA-certified, allergen-free fragrance for a fresh smell after every wash.", hiWhy:"IFRA-प्रमाणित, एलर्जन-फ़्री ख़ुशबू, हर धुलाई के बाद ताज़गी के लिए।" },
   olive:     { name:"Olive oil",       hi:"जैतून तेल",       icon:"🫒", why:"Adds gentle moisture to the soap.",                    hiWhy:"सोप में कोमल नमी जोड़ता है।" }
 };
 const INSIDE = {
@@ -254,7 +266,8 @@ const INSIDE = {
   wash:  { items:["oat","shea"] },
   oil:   { items:["coconut"] },
   roll:  { items:["hing","saunf"] },
-  soap:  { items:["glycerine","almond","olive"] }
+  soap:  { items:["glycerine","almond","olive"] },
+  detergent: { items:["neem","coconutClean","fragrance"], free:["Phosphates","Sulphates","Parabens","Phthalates","Dyes"] }
 };
 
 /* ---------- Reviews ----------
@@ -311,6 +324,9 @@ const PRODUCT_INFO = {
   balm:  { bestFor:"Soothing skin after insect bites", hiBestFor:"कीड़े के काटने के बाद त्वचा को आराम",
            use:["Apply a small amount gently on the bite.","For external use only. Don't use on broken skin.","If irritation persists, consult your paediatrician."],
            hiUse:["काटे हुए हिस्से पर थोड़ा-सा हल्के से लगाएँ।","सिर्फ़ बाहरी इस्तेमाल के लिए। कटी-फटी त्वचा पर न लगाएँ।","जलन बनी रहे तो अपने शिशु रोग विशेषज्ञ से संपर्क करें।"] },
+  detergent:{ bestFor:"Newborn and baby clothes, bibs and burp cloths", hiBestFor:"नवजात और बच्चों के कपड़े, बिब और बर्प क्लॉथ",
+           use:["Check the care label on your baby's clothes.","Use it for hand wash or machine wash, adding the amount shown on the pack.","Rinse well and dry as usual."],
+           hiUse:["शिशु के कपड़ों पर लगा केयर लेबल देखें।","हाथ से या मशीन में धुलाई के लिए, पैक पर बताई मात्रा डालें।","अच्छी तरह खंगालें और हमेशा की तरह सुखाएँ।"] },
   soap:  { bestFor:"A gentle, moisturising daily bath", hiBestFor:"रोज़ का कोमल, मॉइस्चराइज़िंग स्नान",
            use:["Lather the soap in wet hands.","Wash baby gently.","Rinse well and pat dry."],
            hiUse:["गीले हाथों में सोप का झाग बनाएँ।","शिशु को हल्के से नहलाएँ।","अच्छी तरह धोकर थपथपाकर सुखाएँ।"] }
@@ -321,7 +337,8 @@ const VIDEOS = [
   { id:"baby-oil",      title:"The oldest ritual there is", hiTitle:"सबसे पुरानी रस्म", product:"oil" },
   { id:"baby-soap",     title:"Bath time, made gentle",     hiTitle:"कोमल स्नान का समय", product:"soap" },
   { id:"baby-shampoo",  title:"Splashes and giggles",       hiTitle:"छपाक और खिलखिलाहट", product:"wash" },
-  { id:"turmeric-balm", title:"Nature's healing touch",     hiTitle:"प्रकृति का कोमल स्पर्श", product:"balm" }
+  { id:"turmeric-balm", title:"Nature's healing touch",     hiTitle:"प्रकृति का कोमल स्पर्श", product:"balm" },
+  { id:"baby-detergent", title:"Soft on little clothes",     hiTitle:"नन्हे कपड़ों पर कोमल", product:"detergent" }
 ];
 
 /* ---------- Google Analytics ----------
@@ -332,5 +349,5 @@ const GA_ID = "G-DGTXRTYKWN";
 const PRODUCT_SLUGS = {
   aloe:"aloe-vera-baby-wipes", goat:"goat-milk-baby-wipes", water:"water-baby-wipes",
   wash:"head-to-toe-baby-wash", oil:"coconut-baby-oil", roll:"tummy-roll-on",
-  balm:"after-bite-turmeric-balm", soap:"babio-baby-soap"
+  balm:"after-bite-turmeric-balm", soap:"babio-baby-soap", detergent:"baby-liquid-detergent"
 };

@@ -83,7 +83,8 @@ const HI = {
   "Hover a pack to open it. Every product is formulated for delicate baby skin in our own lab.":"पैक पर कर्सर ले जाएँ और उसे खुलते देखें। हर प्रोडक्ट हमारी अपनी लैब में शिशु की नाज़ुक त्वचा के लिए बनाया जाता है।",
   "Baby wipes":"बेबी वाइप्स", "Baby care":"बेबी केयर", "Baby essentials":"बेबी ज़रूरतें",
   "80 wipes":"80 वाइप्स", "72 wipes · with lid":"72 वाइप्स · ढक्कन के साथ",
-  "Bestseller":"बेस्टसेलर", "Tear-free":"आँसू-रहित", "80 wipes · with lid":"80 वाइप्स · ढक्कन के साथ", "India's first":"भारत में पहला", "For newborns":"नवजात के लिए", "Shop on Amazon →":"Amazon पर ख़रीदें →",
+  "Bestseller":"बेस्टसेलर", "Baby laundry":"बेबी लॉन्ड्री", "Phosphates":"फ़ॉस्फ़ेट", "Sulphates":"सल्फ़ेट", "Phthalates":"थैलेट", "Dyes":"रंग (डाई)",
+  "Plant-enriched and pH-balanced, made without phosphates, sulphates, parabens, phthalates and dyes, for baby clothes.":"प्लांट-एनरिच्ड और pH-संतुलित, फ़ॉस्फ़ेट, सल्फ़ेट, पैराबेन, थैलेट और रंगों के बिना, बच्चों के कपड़ों के लिए।", "Tear-free":"आँसू-रहित", "80 wipes · with lid":"80 वाइप्स · ढक्कन के साथ", "India's first":"भारत में पहला", "For newborns":"नवजात के लिए", "Shop on Amazon →":"Amazon पर ख़रीदें →",
   // finder
   "Not sure which one? Find out in three taps.":"कौन-सा चुनें? तीन टैप में जानें।",
   "Tell us about your baby and what you need. We'll suggest the right Novel product.":"अपने शिशु और ज़रूरत के बारे में बताएँ, हम सही Novel प्रोडक्ट सुझाएँगे।",
@@ -380,7 +381,8 @@ const WHY = {
   aloe:"Aloe vera and chamomile for everyday changes.",
   wash:"One mild wash for hair and body keeps bath time short and simple.",
   oil:"A light oil for a calm, bonding massage.",
-  roll:"Rolls on in seconds when your little one is restless."
+  roll:"Rolls on in seconds when your little one is restless.",
+  detergent:"Plant-enriched and pH-balanced, made without phosphates, sulphates, parabens, phthalates and dyes, for baby clothes."
 };
 function recommend(age, need, skin){
   const wipe = (age === "newborn" || skin === "sensitive") ? "water" : skin === "dry" ? "goat" : "aloe";
@@ -389,7 +391,8 @@ function recommend(age, need, skin){
     go:     [wipe, ["mat", "diapers"]],
     bath:   ["wash", ["soap", wipe]],
     massage:["oil", ["roll", "soap"]],
-    tummy:  ["roll", ["oil", "wash"]]
+    tummy:  ["roll", ["oil", "wash"]],
+    laundry:["detergent", [wipe, "soap"]]
   }[need];
   return { main: plan[0], also: plan[1] };
 }
