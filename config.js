@@ -16,7 +16,7 @@ const OFFER = {
   text: "Now from Novel: Head to Toe Wash, Baby Oil, Tummy Roll-On & Turmeric Balm.",
   hi:   "अब Novel से: हेड टू टो वॉश, बेबी ऑयल, टमी रोल-ऑन और टर्मरिक बाम।",
   cta: "Explore", ctaHi: "देखें",
-  href: "#care"
+  href: "products.html#care"
 };
 
 /* ---------- WhatsApp chat ----------
@@ -283,3 +283,33 @@ const AGE_TIPS = [
     tip:"Toddlers on the move: keep a resealable pack in every bag so the wipes never dry out.",
     hiTip:"चलते-फिरते बच्चे: हर बैग में एक रीसील पैक रखें, ताकि वाइप्स कभी न सूखें।" }
 ];
+
+/* ---------- Product details (Products page) ----------
+   "Best for" and how-to-use steps for each product. Please check these
+   against the directions printed on each pack. */
+const PRODUCT_INFO = {
+  aloe:  { bestFor:"Everyday nappy changes, mealtimes and outings", hiBestFor:"रोज़ डायपर बदलना, खाना और बाहर जाना",
+           use:["Peel back the label and open the lid.","Pull out one wipe and gently clean baby's skin.","Press the lid shut so the rest stay moist.","Throw used wipes in the bin. Don't flush them."],
+           hiUse:["लेबल हटाकर ढक्कन खोलें।","एक वाइप निकालें और शिशु की त्वचा को हल्के से साफ़ करें।","ढक्कन दबाकर बंद करें ताकि बाकी वाइप्स नम रहें।","इस्तेमाल किए वाइप्स डस्टबिन में डालें, फ़्लश न करें।"] },
+  goat:  { bestFor:"Dry or delicate skin that needs extra nourishment", hiBestFor:"रूखी या नाज़ुक त्वचा जिसे अतिरिक्त पोषण चाहिए",
+           use:["Open the lid and pull out one wipe.","Clean gently. There's no need to rinse.","Press the lid shut after every use.","Throw used wipes in the bin. Don't flush them."],
+           hiUse:["ढक्कन खोलें और एक वाइप निकालें।","हल्के से साफ़ करें, धोने की ज़रूरत नहीं।","हर बार इस्तेमाल के बाद ढक्कन बंद करें।","इस्तेमाल किए वाइप्स डस्टबिन में डालें, फ़्लश न करें।"] },
+  water: { bestFor:"Newborns and very sensitive skin", hiBestFor:"नवजात और बहुत संवेदनशील त्वचा",
+           use:["Open the lid and pull out one wipe.","Wipe gently from front to back during nappy changes.","Let the skin air-dry for a moment before a fresh nappy.","Press the lid shut after every use."],
+           hiUse:["ढक्कन खोलें और एक वाइप निकालें।","डायपर बदलते समय आगे से पीछे की ओर हल्के से पोंछें।","नया डायपर लगाने से पहले त्वचा को थोड़ा हवा में सूखने दें।","हर बार इस्तेमाल के बाद ढक्कन बंद करें।"] },
+  wash:  { bestFor:"Daily bath time, for hair and body", hiBestFor:"रोज़ नहाने के लिए, बाल और शरीर दोनों",
+           use:["Wet baby's hair and body with warm water.","Lather a small amount in your palm and wash gently.","Rinse well and pat dry, especially in skin folds."],
+           hiUse:["शिशु के बाल और शरीर गुनगुने पानी से गीले करें।","हथेली में थोड़ा-सा लेकर झाग बनाएँ और हल्के से धोएँ।","अच्छी तरह धोकर थपथपाकर सुखाएँ, ख़ासकर त्वचा की सिलवटों में।"] },
+  oil:   { bestFor:"A gentle daily massage before or after the bath", hiBestFor:"नहाने से पहले या बाद में रोज़ की कोमल मालिश",
+           use:["Warm a few drops between your palms.","Massage with long, gentle strokes.","Try it on a small patch of skin first, and avoid broken skin."],
+           hiUse:["कुछ बूँदें हथेलियों में गर्म करें।","लंबे, कोमल स्ट्रोक से मालिश करें।","पहले त्वचा के छोटे हिस्से पर आज़माएँ, कटी-फटी त्वचा पर न लगाएँ।"] },
+  roll:  { bestFor:"Gas and tummy discomfort", hiBestFor:"गैस और पेट की बेचैनी",
+           use:["Roll gently around baby's navel in a clockwise direction.","Follow the age guidance and directions on the pack."],
+           hiUse:["शिशु की नाभि के चारों ओर घड़ी की दिशा में हल्के से लगाएँ।","पैक पर दी गई उम्र संबंधी जानकारी और निर्देशों का पालन करें।"] },
+  balm:  { bestFor:"A warm, soothing massage", hiBestFor:"गर्माहट भरी, आरामदायक मालिश",
+           use:["Take a small amount on your fingertips.","Massage in gently.","Follow the directions on the pack, and try it on a small patch first."],
+           hiUse:["उँगलियों पर थोड़ा-सा लें।","हल्के से मालिश करें।","पैक पर दिए निर्देशों का पालन करें और पहले छोटे हिस्से पर आज़माएँ।"] },
+  soap:  { bestFor:"A gentle, moisturising daily bath", hiBestFor:"रोज़ का कोमल, मॉइस्चराइज़िंग स्नान",
+           use:["Lather the soap in wet hands.","Wash baby gently.","Rinse well and pat dry."],
+           hiUse:["गीले हाथों में सोप का झाग बनाएँ।","शिशु को हल्के से नहलाएँ।","अच्छी तरह धोकर थपथपाकर सुखाएँ।"] }
+};

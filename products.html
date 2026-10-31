@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Products — Novel Baby Care</title>
+<meta name="description" content="The full Novel baby range: baby wipes, head to toe wash, coconut baby oil, tummy roll-on, turmeric balm and Babio baby soap. Ingredients, how to use and where to buy.">
+<link rel="icon" href="assets/novel-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=Hind:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=6">
+</head>
+<body data-page="products">
+<!-- ============ HEADER ============ -->
+<header class="site-head" id="siteHead">
+  <div class="offer" id="offer" hidden>
+    <span id="offerText"></span>
+    <button type="button" id="offerClose" aria-label="Close announcement">×</button>
+  </div>
+  <div class="nav">
+    <div class="wrap">
+      <a class="logo" href="index.html" aria-label="Novel home"><img src="assets/novel-logo.png" alt="Novel" width="104" height="30"><span>Baby<br>care</span></a>
+      <nav aria-label="Main">
+        <ul id="menu">
+          <li><a href="products.html" data-page="products">Products</a></li>
+          <li><a href="mums.html" data-page="mums">Mum &amp; baby</a></li>
+          <li><a href="tips.html" data-page="tips">Tips</a></li>
+          <li><a href="factory.html" data-page="factory">Factory</a></li>
+          <li><a href="quality.html" data-page="quality">Quality</a></li>
+          <li><a href="recognition.html" data-page="recognition">Recognition</a></li>
+          <li><a href="faq.html" data-page="faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <button type="button" class="lang-btn" id="langBtn" lang="hi">हिंदी</button>
+        <a class="btn btn-forest" href="shop.html">Shop now</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+<main id="top">
+<section class="page-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Products</span></nav>
+    <p class="eyebrow">Our products</p>
+    <h1 data-hi="पहले वाइप से पहले स्नान तक, कोमल देखभाल।">Gentle care, from the first wipe to the first bath.</h1>
+    <p class="lead" data-hi="हर Novel प्रोडक्ट की पूरी जानकारी: किस काम का है, अंदर क्या है, कैसे इस्तेमाल करें और कहाँ से ख़रीदें।">Every Novel product in detail: what it's for, what's inside, how to use it and where to buy it.</p>
+  </div>
+</section>
+<!-- ============ PRODUCTS ============ -->
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">The Novel baby range</p>
+        <h2>Everything baby's skin needs, nothing it doesn't.</h2>
+      </div>
+      <p class="lead">Hover a pack to open it. Every product is formulated for delicate baby skin in our own lab.</p>
+    </div>
+    <div class="sub-head first reveal"><h3>Baby wipes</h3></div>
+    <div class="p-grid" id="pGrid"></div>
+    <div class="sub-head reveal" id="care"><h3>Baby care</h3></div>
+    <div class="c-grid" id="cGrid"></div>
+    <div class="sub-head reveal"><h3>Baby essentials</h3></div>
+    <div class="more" id="more"></div>
+  </div>
+</section>
+<!-- ============ PRODUCT DETAILS ============ -->
+<section class="details" id="details">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Product details</p>
+        <h2>Know exactly what you're buying.</h2>
+      </div>
+      <p class="lead">What each product is for, what's in it, how to use it and where to get it.</p>
+    </div>
+    <div id="detailList"></div>
+  </div>
+</section>
+<!-- ============ WHAT'S INSIDE ============ -->
+<section class="inside" id="inside">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">What's inside</p>
+        <h2>Nothing hidden. Tap to see what's inside.</h2>
+      </div>
+      <p class="lead">Key ingredients in each Novel product, explained in plain words. The full list is printed on every pack.</p>
+    </div>
+    <div class="inside-tabs reveal" id="insideTabs" role="tablist" aria-label="Choose a product"></div>
+    <div class="inside-panel reveal" id="insidePanel"></div>
+  </div>
+</section>
+<!-- ============ WIPE TEST ============ -->
+<section class="wipetest" id="wipe-test">
+  <div class="wrap wt-grid">
+    <div class="reveal">
+      <p class="eyebrow">The wipe test</p>
+      <h2 style="margin:10px 0 16px">Pull it. Stretch it. It holds.</h2>
+      <p class="lead">Novel wipes are extra thick and stay moist to the last sheet, thanks to the resealable lid. Try it below.</p>
+      <div class="wt-controls">
+        <label class="wt-range"><span>Pull the wipe</span><input type="range" id="wtPull" min="0" max="100" value="0"></label>
+        <button type="button" class="btn btn-forest" id="wtSqueeze">Squeeze</button>
+      </div>
+      <div class="wt-facts">
+        <div><b>Extra thick</b><span>A thick sheet for a confident clean.</span></div>
+        <div><b>Stays moist</b><span>The resealable lid locks moisture in.</span></div>
+        <div><b>Soft on skin</b><span>Gentle enough for newborn skin.</span></div>
+      </div>
+    </div>
+    <div class="wt-stage reveal d1" id="wtStage">
+      <p class="wt-status" id="wtStatus">Gentle pull</p>
+      <svg viewBox="0 0 520 360" aria-hidden="true">
+        <defs><pattern id="wtq" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="1.6" fill="#D6E2D0"/></pattern></defs>
+        <ellipse cx="260" cy="320" rx="190" ry="14" fill="rgba(22,63,40,.12)"/>
+        <g id="wtSheet">
+          <path d="M120 90 Q260 70 400 90 L405 250 Q260 275 115 250 Z" fill="#fff" stroke="#D3DFCB" stroke-width="2"/>
+          <path d="M120 90 Q260 70 400 90 L405 250 Q260 275 115 250 Z" fill="url(#wtq)"/>
+        </g>
+        <g id="wtHandL"><circle cx="104" cy="170" r="30" fill="#F2C9A6"/><circle cx="104" cy="170" r="30" fill="none" stroke="#E2B48E" stroke-width="2"/></g>
+        <g id="wtHandR"><circle cx="416" cy="170" r="30" fill="#F2C9A6"/><circle cx="416" cy="170" r="30" fill="none" stroke="#E2B48E" stroke-width="2"/></g>
+        <g id="wtDrops"></g>
+      </svg>
+      <small class="wt-note">Illustration of the wipe for demonstration.</small>
+    </div>
+  </div>
+</section>
+<!-- ============ PRODUCT FINDER ============ -->
+<section class="finder" id="finder">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Product finder</p>
+        <h2>Not sure which one? Find out in three taps.</h2>
+      </div>
+      <p class="lead">Tell us about your baby and what you need. We'll suggest the right Novel product.</p>
+    </div>
+    <div class="finder-box wash reveal">
+      <form id="finderForm" onsubmit="return false">
+        <fieldset class="q">
+          <legend><b>1</b>How old is your baby?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="age" value="newborn" checked><span>0–3 months</span></label>
+            <label class="opt"><input type="radio" name="age" value="infant"><span>3–12 months</span></label>
+            <label class="opt"><input type="radio" name="age" value="toddler"><span>1–3 years</span></label>
+            <label class="opt"><input type="radio" name="age" value="kid"><span>3+ years</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend><b>2</b>What do you need it for?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="need" value="nappy" checked><span>Nappy changes</span></label>
+            <label class="opt"><input type="radio" name="need" value="bath"><span>Bath time</span></label>
+            <label class="opt"><input type="radio" name="need" value="massage"><span>Massage</span></label>
+            <label class="opt"><input type="radio" name="need" value="tummy"><span>Tummy comfort</span></label>
+            <label class="opt"><input type="radio" name="need" value="go"><span>Out &amp; about</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="q" style="margin-bottom:0">
+          <legend><b>3</b>How is your baby's skin?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="skin" value="sensitive" checked><span>Very sensitive</span></label>
+            <label class="opt"><input type="radio" name="skin" value="dry"><span>Dry</span></label>
+            <label class="opt"><input type="radio" name="skin" value="normal"><span>Normal</span></label>
+          </div>
+        </fieldset>
+      </form>
+      <div class="result" id="result" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="logo" href="index.html"><img src="assets/novel-logo.png" alt="Novel" width="97" height="28"></a>
+        <p style="margin-top:16px;max-width:34ch" data-hi="Novel Tissues Pvt. Ltd. — Novel बेबी वाइप्स और बेबी केयर के निर्माता। मुख्यालय बेंगलुरु में, उत्पादन मैसूरु और मानेसर में।">Novel Tissues Pvt. Ltd. — makers of Novel baby wipes and baby care. Headquartered in Bengaluru, manufacturing in Mysuru and Manesar.</p>
+      </div>
+      <div><h4>Shop</h4><ul id="fShop"></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="products.html">Products</a></li><li><a href="mums.html">Mum &amp; baby</a></li><li><a href="tips.html">Tips</a></li><li><a href="factory.html">Factory</a></li><li><a href="quality.html">Quality</a></li><li><a href="recognition.html">Recognition</a></li><li><a href="faq.html">FAQ</a></li><li><a href="shop.html">Where to buy</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="mailto:partner@noveltissues.com">partner@noveltissues.com</a></li><li><a href="tel:+919845398453">+91 98453 98453</a></li><li><a id="footWa" href="#" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="https://www.instagram.com/novel_tissue/" target="_blank" rel="noopener">Instagram @novel_tissue</a></li></ul></div>
+    </div>
+    <div class="f-bottom"><span>© <span id="yr"></span> Novel Tissues Pvt. Ltd.</span><span>Made with care in India</span></div>
+  </div>
+</footer>
+
+<a class="wa" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <span class="tip-text">Questions? Chat with us</span>
+  <span class="bubble-btn"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4C9.4 4 4 9 4 15.2c0 2.4.8 4.6 2.2 6.4L5 27l5.7-1.6c1.6.8 3.4 1.2 5.3 1.2 6.6 0 12-5 12-11.2S22.6 4 16 4z" fill="#fff"/><path d="M12.3 10.6c-.3-.6-.5-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.7 5.9 5 2.9 1.1 3.5.9 4.1.8.6-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.7-.4l-2.3-1.1c-.3-.1-.6-.2-.8.2-.2.4-.9 1.1-1.1 1.3-.2.2-.4.3-.8.1-.4-.2-1.5-.6-2.8-1.8-1-.9-1.7-2-1.9-2.4-.2-.4 0-.6.2-.8l.6-.7c.2-.2.2-.4.4-.7.1-.2 0-.5 0-.7l-1.1-2.5z" fill="#25D366"/></svg></span>
+</a>
+
+<script src="config.js?v=6"></script>
+<script src="app.js?v=6"></script>
+</body>
+</html>

@@ -3,6 +3,46 @@
 
 /* ---------- Hindi text (English text → Hindi) ---------- */
 const HI = {
+  // pages
+  "1 crore+":"1 करोड़+", "20 lakh+":"20 लाख+",
+  "Home":"होम", "Full details →":"पूरी जानकारी →", "Best for":"किसके लिए", "How to use":"इस्तेमाल का तरीका", "Product":"प्रोडक्ट", "Buy":"ख़रीदें",
+  "Our products":"हमारे प्रोडक्ट्स", "Where to buy":"कहाँ से ख़रीदें", "Recognition":"पहचान", "Mum & baby":"माँ और शिशु", "Parenting tips":"पेरेंटिंग टिप्स",
+  "Explore Novel":"Novel को जानें", "Everything a parent wants to know, in one place.":"माता-पिता जो जानना चाहते हैं, सब एक जगह।",
+  "Products":"प्रोडक्ट्स", "Open →":"खोलें →", "Our factories":"हमारी फ़ैक्टरियाँ", "Quality":"क्वालिटी", "FAQ":"सवाल-जवाब",
+  "Every product in detail: ingredients, how to use and where to buy.":"हर प्रोडक्ट की पूरी जानकारी: तत्व, इस्तेमाल का तरीका और कहाँ ख़रीदें।",
+  "Everyday moments, #NovelMoms and weekly tips on WhatsApp.":"रोज़ के पल, #NovelMoms और WhatsApp पर साप्ताहिक टिप्स।",
+  "Short, practical guides for baths, massage, nappy rash and travel.":"स्नान, मालिश, डायपर रैश और सफ़र के लिए छोटी, काम की गाइड।",
+  "Mysuru and Manesar: where every Novel product is made.":"मैसूरु और मानेसर: जहाँ हर Novel प्रोडक्ट बनता है।",
+  "How every batch is tested before it reaches your baby.":"आपके शिशु तक पहुँचने से पहले हर बैच कैसे टेस्ट होता है।",
+  "Awards, marketplace status, press and lakhs of ratings.":"अवॉर्ड, मार्केटप्लेस स्टेटस, प्रेस और लाखों रेटिंग।",
+  "Straight answers to the questions parents ask most.":"माता-पिता के सबसे आम सवालों के सीधे जवाब।",
+  "Amazon, Flipkart, Meesho, Blinkit and Swiggy Instamart.":"Amazon, Flipkart, Meesho, Blinkit और Swiggy Instamart।",
+  "See all products, ingredients & how to use →":"सभी प्रोडक्ट्स, तत्व और इस्तेमाल का तरीका देखें →",
+  "Product details":"प्रोडक्ट की जानकारी", "Know exactly what you're buying.":"जानिए आप ठीक-ठीक क्या ख़रीद रहे हैं।",
+  "What each product is for, what's in it, how to use it and where to get it.":"हर प्रोडक्ट किस काम का है, उसमें क्या है, कैसे इस्तेमाल करें और कहाँ मिलेगा।",
+  "Find a product":"प्रोडक्ट खोजें", "Every product, every store.":"हर प्रोडक्ट, हर स्टोर।",
+  "Tap a store to open that product there. Availability can vary by city on Blinkit and Instamart.":"किसी स्टोर पर टैप करें और वहाँ वह प्रोडक्ट खोलें। Blinkit और Instamart पर उपलब्धता शहर के हिसाब से अलग हो सकती है।",
+  "Pick your marketplace.":"अपना मार्केटप्लेस चुनें।", "What we check on every batch.":"हर बैच पर हम क्या जाँचते हैं।",
+  "Under one roof":"एक ही छत के नीचे", "Why making it ourselves matters.":"ख़ुद बनाना क्यों ज़रूरी है।",
+  "When the same team formulates, makes, tests and packs every product, nothing about your baby's skin is left to someone else.":"जब एक ही टीम हर प्रोडक्ट का फ़ॉर्मूला बनाती, उसे बनाती, टेस्ट करती और पैक करती है, तो आपके शिशु की त्वचा से जुड़ा कुछ भी किसी और पर नहीं छोड़ा जाता।",
+  "pouches of monthly capacity across our two plants":"पाउच की मासिक क्षमता, दोनों प्लांट मिलाकर",
+  "factories, in Mysuru (Karnataka) and Manesar (Haryana)":"फ़ैक्टरियाँ, मैसूरु (कर्नाटक) और मानेसर (हरियाणा) में",
+  "packs reaching Indian homes every month":"पैक हर महीने भारतीय घरों तक पहुँचते हैं",
+  "regions we export to: UAE, Africa and Southeast Asia":"क्षेत्रों में एक्सपोर्ट: UAE, अफ़्रीका और दक्षिण-पूर्व एशिया",
+  "Formulation lab":"फ़ॉर्मूलेशन लैब", "Cleanroom-class production":"क्लीनरूम-स्तर का उत्पादन", "In-house microbiology":"इन-हाउस माइक्रोबायोलॉजी", "Batch traceability":"बैच ट्रेसबिलिटी",
+  "Our own lab develops each formula for baby skin and checks it before anything goes into production.":"हमारी अपनी लैब शिशु की त्वचा के लिए हर फ़ॉर्मूला बनाती है और उत्पादन से पहले उसकी जाँच करती है।",
+  "Wipes are made in controlled conditions with minimal human contact, to keep every sheet clean.":"वाइप्स नियंत्रित माहौल में, बहुत कम मानवीय संपर्क के साथ बनते हैं, ताकि हर शीट साफ़ रहे।",
+  "Batches are tested in our own microbiology lab before they are released for sale.":"बिक्री से पहले हर बैच हमारी अपनी माइक्रोबायोलॉजी लैब में टेस्ट होता है।",
+  "Every pack carries a code that links back to the day, the line and the raw materials it was made from.":"हर पैक पर एक कोड होता है जो बताता है कि वह किस दिन, किस लाइन पर और किन कच्चे माल से बना।",
+  "Our safety promise":"हमारा सुरक्षा वादा", "What every Novel wipe is, and isn't.":"हर Novel वाइप क्या है, और क्या नहीं।",
+  "These apply to every Novel baby wipe. Each pack lists its full ingredients.":"ये हर Novel बेबी वाइप पर लागू होते हैं। हर पैक पर पूरी सामग्री लिखी है।",
+  "Every wipe is":"हर वाइप है", "Every wipe is free from":"हर वाइप इनसे मुक्त है", "pH-balanced for baby skin":"शिशु की त्वचा के लिए pH-संतुलित",
+  "Made in our own ISO 9001 and GMP certified factories":"हमारी अपनी ISO 9001 और GMP प्रमाणित फ़ैक्टरियों में बना", "Sealed with a resealable lid":"रीसील ढक्कन से बंद",
+  "Our 99% Pure Water wipes are also fragrance-free.":"हमारे 99% प्योर वॉटर वाइप्स ख़ुशबू-रहित भी हैं।",
+  "A certified quality management system covers how we plan, make and check every product.":"एक प्रमाणित क्वालिटी मैनेजमेंट सिस्टम तय करता है कि हम हर प्रोडक्ट की योजना, निर्माण और जाँच कैसे करें।",
+  "A certified environmental management system guides how our factories run.":"एक प्रमाणित पर्यावरण मैनेजमेंट सिस्टम हमारी फ़ैक्टरियों के संचालन का मार्गदर्शन करता है।",
+  "Good Manufacturing Practice: hygiene, process and documentation standards on every line.":"गुड मैन्युफ़ैक्चरिंग प्रैक्टिस: हर लाइन पर स्वच्छता, प्रक्रिया और दस्तावेज़ के मानक।",
+  "See our factories →":"हमारी फ़ैक्टरियाँ देखें →", "Read the FAQ →":"सवाल-जवाब पढ़ें →",
   // new sections
   "packs reaching Indian homes today":"पैक आज भारतीय घरों तक पहुँच रहे हैं",
   "Estimate based on our average of 2 million packs a month":"हर महीने औसतन 20 लाख पैक के आधार पर अनुमान",
@@ -136,6 +176,10 @@ const $ = id => document.getElementById(id);
 const stores = Object.entries(STORES);
 const online = stores.filter(([, s]) => !s.quick), quick = stores.filter(([, s]) => s.quick);
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const PAGE = document.body.dataset.page || "index";
+// product links work from any page
+const prodHref = id => (PAGE === "products" ? "#prod-" : "products.html#prod-") + id;
+const detailHref = id => (PAGE === "products" ? "#detail-" : "products.html#detail-") + id;
 
 /* ---------- link tracking ---------- */
 function track(url, place){
@@ -237,7 +281,7 @@ function renderOffer(){
   bar.hidden = false;
   $("offerText").innerHTML = `${pick(OFFER.text, OFFER.hi)} <a href="${OFFER.href}">${pick(OFFER.cta, OFFER.ctaHi)} →</a>`;
 }
-$("offerClose").addEventListener("click", () => {
+$("offerClose")?.addEventListener("click", () => {
   $("offer").hidden = true;
   try { localStorage.setItem("novel-offer-closed", OFFER.text); } catch (e) {}
 });
@@ -247,12 +291,14 @@ const mkBtn = ([k, s]) => storeLink(k, s.url, "hero",
   `<span class="chip">${s.letter}</span><span><small>${L(s.quick ? "Order on" : "Buy on")}</small>${s.name}</span>`,
   `class="mk" style="--bg:${s.bg};--fg:${s.fg}"`);
 function renderHeroShop(){
+  if (!$("heroOnline")) return;
   $("heroOnline").innerHTML = online.map(mkBtn).join("");
   $("heroQuick").innerHTML = quick.map(mkBtn).join("");
 }
 let heroVariant = "aloe";
 // real pack photo in the centre; falls back to the drawn pack if no photo is set
 function setHero(id){
+  if (!$("heroPack")) return;
   heroVariant = id;
   const p = PRODUCTS[id];
   $("heroPack").innerHTML = p.img
@@ -262,9 +308,10 @@ function setHero(id){
 }
 // the rest of the range floats around the main pack
 function renderHeroOrbit(){
+  if (!$("heroOrbit")) return;
   const ids = ["wash", "oil", "roll", "soap"].filter(id => PRODUCTS[id] && PRODUCTS[id].img);
   $("heroOrbit").innerHTML = ids.map((id, i) =>
-    `<a class="orbit o${i + 1}" href="#prod-${id}" aria-label="${PRODUCTS[id].name}" style="--tint:${PRODUCTS[id].tint}">${art(id)}</a>`).join("");
+    `<a class="orbit o${i + 1}" href="${prodHref(id)}" aria-label="${PRODUCTS[id].name}" style="--tint:${PRODUCTS[id].tint}">${art(id)}</a>`).join("");
 }
 document.querySelectorAll(".variants button").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".variants button").forEach(x => x.setAttribute("aria-pressed", x === b));
@@ -278,6 +325,7 @@ const starPath = "M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7
 const star = `<svg viewBox="0 0 20 20"><path d="${starPath}" fill="#F2C66D"/></svg>`;
 const halfStar = `<svg viewBox="0 0 20 20"><defs><linearGradient id="hs"><stop offset="50%" stop-color="#F2C66D"/><stop offset="50%" stop-color="#DCE8D2"/></linearGradient></defs><path d="${starPath}" fill="url(#hs)"/></svg>`;
 function renderRatings(){
+  if (!$("ratings")) return;
   $("ratings").innerHTML = online.map(([k, s], i) => storeLink(k, s.url, "ratings", `
     <div class="top"><span>${s.name}</span><span class="stars">${star.repeat(4)}${halfStar}</span></div>
     <div class="score">${RATINGS[k].score}<small>${L("OUT OF 5")}</small></div>
@@ -289,7 +337,7 @@ function renderRatings(){
 /* ---------- products ---------- */
 const ids = type => Object.keys(PRODUCTS).filter(id => PRODUCTS[id].type === type);
 function renderProducts(){
-  $("pGrid").innerHTML = ids("wipe").map((id, i) => { const p = PRODUCTS[id]; return `
+  if ($("pGrid")) $("pGrid").innerHTML = ids("wipe").map((id, i) => { const p = PRODUCTS[id]; return `
     <article class="card reveal d${i}" id="prod-${id}" style="--tint:${p.tint}">
       <span class="tag">${L(p.tag)}</span>
       <div class="art">${art(id)}</div>
@@ -298,23 +346,25 @@ function renderProducts(){
       <p>${pick(p.desc, p.hi.desc)}</p>
       <ul class="feat">${pick(p.feat, p.hi.feat).map(f => `<li>${f}</li>`).join("")}</ul>
       <div class="buy">${buyP(id, "product-" + id)}</div>
+      <a class="d-link" href="${detailHref(id)}">${L("Full details →")}</a>
     </article>`; }).join("");
-  $("pGrid").querySelectorAll(".card").forEach(card => {
+  document.querySelectorAll("#pGrid .card").forEach(card => {
     const svg = card.querySelector(".pack");
     if (!svg) return;
     const on = () => svg.classList.add("open"), off = () => svg.classList.remove("open");
     card.addEventListener("mouseenter", on); card.addEventListener("mouseleave", off);
     card.addEventListener("focusin", on); card.addEventListener("focusout", off);
   });
-  $("cGrid").innerHTML = ids("care").map((id, i) => { const p = PRODUCTS[id]; return `
+  if ($("cGrid")) $("cGrid").innerHTML = ids("care").map((id, i) => { const p = PRODUCTS[id]; return `
     <article class="card reveal d${i}" id="prod-${id}" style="--tint:${p.tint}">
       ${p.tag ? `<span class="tag">${L(p.tag)}</span>` : ""}
       <div class="art">${art(id)}</div>
       <h3>${p.name}</h3>
       <p>${pick(p.desc, p.hi.desc)}</p>
       <div class="buy">${buyP(id, "product-" + id)}</div>
+      <a class="d-link" href="${detailHref(id)}">${L("Full details →")}</a>
     </article>`; }).join("");
-  $("more").innerHTML = ids("essential").map((id, i) => { const p = PRODUCTS[id]; return storeLink("amazon",
+  if ($("more")) $("more").innerHTML = ids("essential").map((id, i) => { const p = PRODUCTS[id]; return storeLink("amazon",
     STORES.amazon.search(p.q), "product-" + id,
     `<span class="ico">${iconSVG(p.icon)}</span><span><b>${pName(id)}</b><span>${pick(p.desc, p.hi.desc)} · ${L("Shop on Amazon →")}</span></span>`,
     `class="mini reveal d${i}" id="prod-${id}"`); }).join("");
@@ -340,8 +390,9 @@ function recommend(age, need, skin){
   }[need];
   return { main: plan[0], also: plan[1] };
 }
-const chip = id => `<a href="#prod-${id}"><span class="thumb" style="background:${PRODUCTS[id].tint}">${art(id)}</span>${pName(id)}</a>`;
+const chip = id => `<a href="${prodHref(id)}"><span class="thumb" style="background:${PRODUCTS[id].tint}">${art(id)}</span>${pName(id)}</a>`;
 function renderFinder(animate){
+  if (!$("finderForm")) return;
   const f = new FormData($("finderForm"));
   const { main, also } = recommend(f.get("age"), f.get("need"), f.get("skin"));
   const p = PRODUCTS[main];
@@ -360,11 +411,12 @@ function renderFinder(animate){
   autoOpen(box);
   if (animate){ box.classList.remove("swap"); void box.offsetWidth; box.classList.add("swap"); }
 }
-$("finderForm").addEventListener("change", () => renderFinder(true));
+$("finderForm")?.addEventListener("change", () => renderFinder(true));
 
 /* ---------- mums: doctor + reels ---------- */
 const playIcon = '<svg viewBox="0 0 20 20"><path d="M5 3l12 7-12 7z" fill="#267146"/></svg>';
 function renderMums(){
+  if (!$("mums")) return;
   const reels = REELS.filter(r => r.url || r.thumb);
   const hasDoc = !!DOCTOR.quote;
   const showReels = reels.length || SHOW_PLACEHOLDERS;
@@ -397,6 +449,7 @@ function renderMums(){
 
 /* ---------- factory photos + certificates ---------- */
 function renderFactory(){
+  if (!$("fphotos")) return;
   const photos = FACTORY_PHOTOS.filter(p => p.src);
   const list = photos.length ? photos : (SHOW_PLACEHOLDERS ? FACTORY_PHOTOS : []);
   $("fphotos").hidden = !list.length;
@@ -415,6 +468,7 @@ function renderFactory(){
 /* ---------- awards ---------- */
 const trophy = c => `<svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="40" fill="${c}" opacity=".45"/><path d="M28 22h28v10a14 14 0 0 1-28 0z" fill="#163F28"/><path d="M28 26h-6a6 6 0 0 0 6 8M56 26h6a6 6 0 0 1-6 8" stroke="#163F28" stroke-width="3" fill="none"/><rect x="39" y="45" width="6" height="9" fill="#163F28"/><rect x="31" y="54" width="22" height="7" rx="2" fill="#163F28"/><path d="M42 26l1.8 3.6 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="#F2C66D"/></svg>`;
 function renderAwards(){
+  if (!$("awards")) return;
   const colors = ["#8DC163", "#F2C66D", "#9ED3E6", "#CAE5A5"];
   $("awards").innerHTML = [2015, 2018, 2021, 2023].map((y, i) =>
     `<div class="award reveal d${i}">${trophy(colors[i])}<div class="yr">${y}</div><p>${L("Customer Satisfaction Award")}</p></div>`).join("");
@@ -422,6 +476,7 @@ function renderAwards(){
 
 /* ---------- tips + article dialog ---------- */
 function renderTips(){
+  if (!$("tGrid")) return;
   $("tGrid").innerHTML = TIPS.map((t, i) => `
     <button type="button" class="tip reveal d${i}" data-tip="${t.id}" style="--tint:${t.tint}">
       <span class="cover"><small>${pick(t.tag, t.hiTag)} · ${t.mins} ${hi() ? "मिनट" : "min read"}</small>${art(t.icon)}</span>
@@ -443,11 +498,16 @@ function openTip(id){
   dlg.querySelectorAll(".also a").forEach(a => a.addEventListener("click", () => dlg.close()));
   if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
 }
-$("tGrid").addEventListener("click", e => { const b = e.target.closest("[data-tip]"); if (b) openTip(b.dataset.tip); });
-dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+$("tGrid")?.addEventListener("click", e => {
+  const b = e.target.closest("[data-tip]"); if (!b) return;
+  const full = $("tip-" + b.dataset.tip);
+  if (full) full.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); else openTip(b.dataset.tip);
+});
+dlg?.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
 
 /* ---------- FAQ ---------- */
 function renderFAQ(){
+  if (!$("faqList")) return;
   const mail = s => s.replace(/([\w.+-]+@[\w-]+\.[\w.]+)/g, '<a href="mailto:$1">$1</a>');
   $("faqList").innerHTML = FAQ.map((f, i) =>
     `<details ${i === 0 ? "open" : ""}><summary>${pick(f.q, f.hq)}</summary><div class="ans">${mail(pick(f.a, f.ha))}</div></details>`).join("");
@@ -461,8 +521,7 @@ function renderShop(){
     <div><b style="color:${s.fg}">${s.name}</b><br><span>${L(BLURBS[k])}</span></div>
     <div class="arrow"><span>${L("Shop Novel baby care")}</span><i>→</i></div>`,
     `class="tile reveal d${i}" style="background:${s.bg};color:${s.text}"`);
-  $("tiles").innerHTML = online.map(tile).join("");
-  $("tilesQuick").innerHTML = quick.map(tile).join("");
+  if ($("tiles")) { $("tiles").innerHTML = online.map(tile).join(""); $("tilesQuick").innerHTML = quick.map(tile).join(""); }
   $("fShop").innerHTML = stores.map(([k, s]) => `<li>${storeLink(k, s.url, "footer", s.name)}</li>`).join("");
   $("yr").textContent = new Date().getFullYear();
 }
@@ -484,6 +543,7 @@ function packsToday(){
   return Math.floor(secs * PACKS_PER_SEC);
 }
 function startLive(){
+  if (!$("liveCount")) return;
   const el = $("liveCount");
   const show = () => { el.textContent = packsToday().toLocaleString("en-IN"); };
   show(); setInterval(show, 1000);
@@ -492,6 +552,7 @@ function startLive(){
 /* ---------- what's inside ---------- */
 let insideProduct = "aloe", insideIng = null;
 function renderInside(){
+  if (!$("insideTabs")) return;
   const ids = Object.keys(INSIDE).filter(id => PRODUCTS[id]);
   $("insideTabs").innerHTML = ids.map(id => { const p = PRODUCTS[id]; return `
     <button type="button" role="tab" aria-selected="${id === insideProduct}" data-id="${id}" style="--tint:${p.tint}">
@@ -516,8 +577,8 @@ function renderInside(){
       <div class="buy" style="margin-top:18px">${buyP(insideProduct, "inside")}</div>
     </div>`;
 }
-$("insideTabs").addEventListener("click", e => { const b = e.target.closest("[data-id]"); if (!b) return; insideProduct = b.dataset.id; insideIng = null; renderInside(); });
-$("insidePanel").addEventListener("click", e => {
+$("insideTabs")?.addEventListener("click", e => { const b = e.target.closest("[data-id]"); if (!b) return; insideProduct = b.dataset.id; insideIng = null; renderInside(); });
+$("insidePanel")?.addEventListener("click", e => {
   const b = e.target.closest("[data-ing]"); if (!b) return;
   insideIng = b.dataset.ing;
   $("insidePanel").querySelectorAll("[data-ing]").forEach(x => x.setAttribute("aria-pressed", x.dataset.ing === insideIng));
@@ -525,6 +586,7 @@ $("insidePanel").addEventListener("click", e => {
 
 /* ---------- wipe test ---------- */
 function updatePull(){
+  if (!$("wtPull")) return;
   const v = +$("wtPull").value;
   $("wtSheet").style.transform = `scaleX(${1 + v * .0035}) scaleY(${1 - v * .0009})`;
   const shift = v * .5;
@@ -534,8 +596,8 @@ function updatePull(){
   st.textContent = L(v < 30 ? "Gentle pull" : v < 75 ? "Stretching…" : "Still in one piece ✓");
   st.classList.toggle("ok", v >= 75);
 }
-$("wtPull").addEventListener("input", updatePull);
-$("wtSqueeze").addEventListener("click", () => {
+$("wtPull")?.addEventListener("input", updatePull);
+$("wtSqueeze")?.addEventListener("click", () => {
   const g = $("wtDrops");
   g.innerHTML = Array.from({ length: 9 }, (_, i) =>
     `<path class="drop" style="animation-delay:${i * .08}s" transform="translate(${170 + i * 22} ${245 + (i % 3) * 6})" d="M0 0 C -5 8 -5 13 0 15 C 5 13 5 8 0 0 Z" fill="#7CC4E8"/>`).join("");
@@ -546,6 +608,7 @@ $("wtSqueeze").addEventListener("click", () => {
 /* ---------- reviews ---------- */
 const fmtLakh = n => n >= 100000 ? (Math.floor(n / 10000) / 10) + (hi() ? " लाख+" : " lakh+") : Math.round(n / 1000) + "K+";
 function renderReviews(){
+  if (!$("rvSummary")) return;
   const total = Object.values(RATINGS).reduce((a, r) => a + (r.n || 0), 0);
   $("rvSummary").innerHTML = `
     <div class="big">${fmtLakh(total)}</div>
@@ -564,6 +627,7 @@ function renderReviews(){
 
 /* ---------- #NovelMoms wall ---------- */
 function renderMomWall(){
+  if (!$("mwGrid")) return;
   const ratios = ["3/4", "1/1", "4/5", "3/4", "1/1", "4/5", "3/4", "1/1"];
   $("mwGrid").innerHTML = MOM_PHOTOS.length
     ? MOM_PHOTOS.map((m, i) => `<figure class="mw-item reveal d${i % 4}"><img src="${m.src}" alt="${m.handle}" loading="lazy"><figcaption>${m.handle}</figcaption></figure>`).join("")
@@ -577,6 +641,7 @@ function renderMomWall(){
 /* ---------- weekly tips on WhatsApp ---------- */
 let wkAge = "0-3", wkTimer;
 function renderWeekly(animate){
+  if (!$("wkAges")) return;
   $("wkAges").innerHTML = AGE_TIPS.map(a =>
     `<button type="button" role="radio" aria-checked="${a.id === wkAge}" data-age="${a.id}">${pick(a.label, a.hiLabel)}</button>`).join("");
   const a = AGE_TIPS.find(x => x.id === wkAge), p = PRODUCTS[a.product];
@@ -585,14 +650,67 @@ function renderWeekly(animate){
   $("wkBtn").dataset.wa = "weekly-" + a.id;
   const me = `<div class="bubble-msg me">${hi() ? `नमस्ते Novel, मुझे साप्ताहिक टिप्स भेजें। शिशु की उम्र: ${a.hiLabel}` : `Hi Novel, weekly tips please! Baby's age: ${a.label}`}</div>`;
   const reply = `<div class="bubble-msg"><b>${L("Tip of the week")}</b>${pick(a.tip, a.hiTip)}
-      <a class="prod" href="#prod-${a.product}">${p.img ? `<img class="${p.photo === "cover" ? "cover" : ""}" src="${p.img}" alt="">` : ""}${pName(a.product)}</a></div>`;
+      <a class="prod" href="${prodHref(a.product)}">${p.img ? `<img class="${p.photo === "cover" ? "cover" : ""}" src="${p.img}" alt="">` : ""}${pName(a.product)}</a></div>`;
   clearTimeout(wkTimer);
   if (animate && !reduce){
     $("wkChat").innerHTML = me + `<div class="typing"><i></i><i></i><i></i></div>`;
     wkTimer = setTimeout(() => { $("wkChat").innerHTML = me + reply; }, 900);
   } else $("wkChat").innerHTML = me + reply;
 }
-$("wkAges").addEventListener("click", e => { const b = e.target.closest("[data-age]"); if (!b) return; wkAge = b.dataset.age; renderWeekly(true); });
+$("wkAges")?.addEventListener("click", e => { const b = e.target.closest("[data-age]"); if (!b) return; wkAge = b.dataset.age; renderWeekly(true); });
+
+
+/* ---------- products page: full details ---------- */
+const TYPE_LABEL = { wipe:"Baby wipes", care:"Baby care", essential:"Baby essentials" };
+function renderDetails(){
+  if (!$("detailList")) return;
+  const list = Object.keys(PRODUCT_INFO).filter(id => PRODUCTS[id]);
+  $("detailList").innerHTML = list.map((id, i) => {
+    const p = PRODUCTS[id], info = PRODUCT_INFO[id], inside = INSIDE[id];
+    return `<article class="detail reveal" id="detail-${id}" style="--tint:${p.tint}">
+      <div class="d-photo">${art(id, { open:true })}</div>
+      <div class="d-info">
+        <p class="eyebrow">${L(TYPE_LABEL[p.type])}${p.count ? " · " + L(p.count) : ""}</p>
+        <h3>${pName(id)}</h3>
+        <p class="d-desc">${pick(p.desc, p.hi && p.hi.desc)}</p>
+        <dl class="d-facts">
+          <div><dt>${L("Best for")}</dt><dd>${pick(info.bestFor, info.hiBestFor)}</dd></div>
+          ${inside ? `<div><dt>${L("Key ingredients")}</dt><dd>${inside.items.map(k => `<span class="ing">${INGREDIENTS[k].icon} ${pick(INGREDIENTS[k].name, INGREDIENTS[k].hi)}</span>`).join("")}</dd></div>` : ""}
+          ${inside && inside.free ? `<div><dt>${L("Free from")}</dt><dd>${inside.free.map(f => `<s>${L(f)}</s>`).join(" ")}</dd></div>` : ""}
+        </dl>
+        <h4>${L("How to use")}</h4>
+        <ol class="d-steps">${pick(info.use, info.hiUse).map(u => `<li>${u}</li>`).join("")}</ol>
+        <div class="buy">${buyP(id, "detail-" + id)}</div>
+      </div>
+    </article>`; }).join("");
+  autoOpen($("detailList"));
+}
+
+/* ---------- tips page: full articles ---------- */
+function renderArticles(){
+  if (!$("articleList")) return;
+  $("articleList").innerHTML = TIPS.map(t => `
+    <article class="af reveal" id="tip-${t.id}" style="--tint:${t.tint}">
+      <header class="af-head"><p class="eyebrow">${pick(t.tag, t.hiTag)} · ${t.mins} ${hi() ? "मिनट" : "min read"}</p>
+        <h2>${pick(t.title, t.hiTitle)}</h2><p class="lead">${pick(t.excerpt, t.hiExcerpt)}</p></header>
+      <div class="af-body">${hi() ? `<p class="lang-note">${L("This guide is in English for now.")}</p>` : ""}${t.body}</div>
+      <footer class="af-foot"><p class="eyebrow">${L("Products for this")}</p><div class="also">${t.products.map(chip).join("")}</div></footer>
+    </article>`).join("");
+}
+
+/* ---------- shop page: product × store table ---------- */
+function renderShopTable(){
+  if (!$("shopTable")) return;
+  const list = Object.keys(PRODUCTS).filter(id => PRODUCTS[id].type !== "essential");
+  $("shopTable").innerHTML = `<thead><tr><th>${L("Product")}</th>${stores.map(([, s]) => `<th><span class="st-chip" style="--bg:${s.bg};--fg:${s.fg}">${s.letter}</span>${s.short || s.name}</th>`).join("")}</tr></thead>
+    <tbody>${list.map(id => { const p = PRODUCTS[id]; return `<tr>
+      <th scope="row"><a href="${detailHref(id)}"><span class="thumb" style="background:${p.tint}">${art(id)}</span>${pName(id)}</a></th>
+      ${stores.map(([k, s]) => `<td>${storeLink(k, (p.links && p.links[k]) || s.search(p.q), "shop-table-" + id, L("Buy"), `class="st-buy" style="--bg:${s.bg};--fg:${s.fg}"`)}</td>`).join("")}
+    </tr>`; }).join("")}</tbody>`;
+}
+
+/* ---------- mark the current page in the menu ---------- */
+document.querySelectorAll(`#menu a[data-page="${PAGE}"]`).forEach(a => a.setAttribute("aria-current", "page"));
 
 /* ---------- static text translation ---------- */
 const original = new WeakMap();
@@ -649,7 +767,7 @@ const observeReveals = () => document.querySelectorAll(".reveal:not(.in)").forEa
 /* ---------- language ---------- */
 function renderAll(){
   renderOffer(); renderHeroShop(); renderRatings(); renderProducts(); renderFinder(false);
-  renderInside(); renderReviews(); renderMums(); renderMomWall(); renderWeekly(false); updatePull(); renderFactory(); renderAwards(); renderTips(); renderFAQ();
+  renderInside(); renderReviews(); renderDetails(); renderArticles(); renderShopTable(); renderMums(); renderMomWall(); renderWeekly(false); updatePull(); renderFactory(); renderAwards(); renderTips(); renderFAQ();
   renderShop(); renderWhatsApp();
 }
 function setLang(l){
